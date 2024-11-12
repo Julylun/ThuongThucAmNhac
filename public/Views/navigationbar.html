@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Navigation Bar view</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../Css/index-tailwind.css">
+</head>
+
+<body class="w-screen h-screen flex overflow-hidden">
+  <aside id="side-bar"></aside>
+  <script type="module" src="../Components/sidebar/sidebar.js"></script>
+  <div id="main-content" class="flex-1 overflow-hidden">
+
+
+    <header id="navigation-bar" class="bg-[#170F23] w-full h-12 overflow-x-hidden flex items-center xl:h-16">
+      <button class="ml-4">
+        <svg class="size-8" viewBox="0 0 24 24">
+          <rect id="view-box" width="24" height="24" fill="#141124" opacity="0" />
+          <path id="Shape"
+            d="M10.22,9.28a.75.75,0,0,1,0-1.06l2.72-2.72H.75A.75.75,0,0,1,.75,4H12.938L10.22,1.281A.75.75,0,1,1,11.281.22l4,4a.749.749,0,0,1,0,1.06l-4,4a.75.75,0,0,1-1.061,0Z"
+            transform="translate(24, 0) scale(-1, 1) translate(4.25, 7.25)" fill="#595462" />
+        </svg>
+
+      </button>
+      <button>
+        <svg class="size-8 ml-1" viewBox="0 0 24 24">
+          <rect id="view-box" width="24" height="24" fill="#141124" opacity="0" />
+          <path id="Shape"
+            d="M10.22,9.28a.75.75,0,0,1,0-1.06l2.72-2.72H.75A.75.75,0,0,1,.75,4H12.938L10.22,1.281A.75.75,0,1,1,11.281.22l4,4a.749.749,0,0,1,0,1.06l-4,4a.75.75,0,0,1-1.061,0Z"
+            transform="translate(4.25 7.25)" fill="#595462" />
+        </svg>
+      </button>
+
+
+      <div class="flex items-center justify-start bg-[#2F2739] w-2/5 min-w-60 max-w-72 h-8 ml-3 mr-3 rounded-2xl">
+        <svg class="size-6 ml-4 mr-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M14.9536 14.9458L21 21M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+            stroke="#DADADA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <input
+          class="bg-transparent w-4/6 text-xs text-[#FFF] border-none focus:border-none active:border-none placeholder-[#DADADA] placeholder:font-Nunito"
+          placeholder="Search songs, albums, artists...">
+      </div>
+
+      <button class="ml-auto mr-4">
+        <svg class="size-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="9" r="3" stroke="#FFF" stroke-width="1.5" />
+          <circle cx="12" cy="12" r="10" stroke="#FFF" stroke-width="1.5" />
+          <path d="M17.9691 20C17.81 17.1085 16.9247 15 11.9999 15C7.07521 15 6.18991 17.1085 6.03076 20"
+            stroke="#FFF" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+
+      </button>
+    </header>
+
+
+  </div>
+
+  </div>
+
+
+
+
+</body>
+
+</html>

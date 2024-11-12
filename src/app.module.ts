@@ -1,11 +1,17 @@
 import { Module } from '@nestjs/common';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CatsModule } from './modules/cats/cats.module';
 
 @Module({
-  imports: [CatsModule],
-  controllers: [AppController],
-  providers: [AppService],
+    imports: [
+        ServeStaticModule.forRoot({
+            rootPath: join(__dirname, '..', 'public'), // Đường dẫn đến thư mục `public`
+        }),
+    ],
+    controllers: [AppController],
+    providers: [AppService],
 })
 export class AppModule {}
+

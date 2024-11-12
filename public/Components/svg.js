@@ -12,6 +12,9 @@ const changeColor = (svgElement, color) => {
     for (let path of svgElement.getElementsByTagName('path')) {
         path.setAttribute('stroke',color)
     }
+    for(let circle of svgElement.getElementsByTagName('circle')) {
+        circle.setAttribute('stroke',color)
+    }
 }
 
 const changeElementsColor = (elementClassName, color) => {
