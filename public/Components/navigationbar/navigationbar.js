@@ -1,7 +1,6 @@
 import * as File from '../../Features/common/file.js'
-
 export {
-    createSideBar
+    createNavigationBar
 }
 
 const createJsLink = async (sideBarHtmlElement) => {
@@ -11,22 +10,22 @@ const createJsLink = async (sideBarHtmlElement) => {
     sideBarHtmlElement.insertAdjacentElement('afterend',scriptTag)
 }
 
-const createSideBar = async () => {
-    let sidebar_html = await File.getTextFromFile('/Views/sidebar.html') 
+const createNavigationBar = async () => {
+    let sidebar_html = await File.getTextFromFile('/Views/navigationbar.html') 
 
     const htmlParser = new DOMParser()
     const doc = htmlParser.parseFromString(sidebar_html, "text/html")
 
-    let tempSideBarHtmlElement = doc.querySelector('#side-bar')
-    let mainSideBarHtmlElement = document.getElementById('side-bar')
+    let tempSideBarHtmlElement = doc.querySelector('#navigation-bar')
+    let mainSideBarHtmlElement = document.getElementById('navigation-bar')
 
     mainSideBarHtmlElement.classList = tempSideBarHtmlElement.classList
     mainSideBarHtmlElement.innerHTML = tempSideBarHtmlElement.innerHTML
 
-    createJsLink(mainSideBarHtmlElement)
+    // createJsLink(mainSideBarHtmlElement)
 
     // console.log(sidebar_html)
 }
 
 
-createSideBar()
+createNavigationBar()
