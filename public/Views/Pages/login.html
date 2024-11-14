@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
+    <link rel="stylesheet" href="../../Css/index-tailwind.css">
+</head>
+<body class="bg-background">
+    <!-- npx tailwindcss -i ./Css/index.css -o ./Css/index-tailwind.css --watch -->
+    <div class="min-h-screen flex items-center justify-center bg-background font-Nunito">
+        <div class="wrapper bg--login flex items-center justify-center sm:bg-gradient-to-b from-[#8E46CD30] via-[#CCABE830] to-[#FFFFFF30] bg-opacity-30 rounded-[20px] shadow-lg m-12 w-96 h-[520px]">
+            <div class="w-80">
+                <div class="flex items-center justify-center">
+                    <p class="text-[#FFFF]">
+                        <h1 class="text-[#ffff] font-bold text-4xl mr-2">Log in to</h1>
+                        <span class="font-Nunito font-bold text-stroke text-4xl">
+                            <span class="text-[#008DC6]">L</span><span class="text-[#3acf67]">ee</span><span
+                                class="text-[#C0C535]">l</span><span class="text-[#faa835]">u</span><span
+                                class="text-[#ee3a3a]">n</span></span>
+                        <span class="text-[#ffff] text-xl mr-2 pl-2">life</span>
+                    </p>
+                </div>
+                <div class="flex justify-center">
+                    <button class="flex items-center justify-center w-[250px] bg-transparent border-1.5 border-[#818181] hover:border-[#fff] rounded-full mt-7 py-2 px-2 mb-6 text-[#fff]">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none"><path fill="#4285F4" d="M14.9 8.161c0-.476-.039-.954-.121-1.422h-6.64v2.695h3.802a3.24 3.24 0 01-1.407 2.127v1.75h2.269c1.332-1.22 2.097-3.02 2.097-5.15z"/><path fill="#34A853" d="M8.14 15c1.898 0 3.499-.62 4.665-1.69l-2.268-1.749c-.631.427-1.446.669-2.395.669-1.836 0-3.393-1.232-3.952-2.888H1.85v1.803A7.044 7.044 0 008.14 15z"/><path fill="#FBBC04" d="M4.187 9.342a4.17 4.17 0 010-2.68V4.859H1.849a6.97 6.97 0 000 6.286l2.338-1.803z"/><path fill="#EA4335" d="M8.14 3.77a3.837 3.837 0 012.7 1.05l2.01-1.999a6.786 6.786 0 00-4.71-1.82 7.042 7.042 0 00-6.29 3.858L4.186 6.66c.556-1.658 2.116-2.89 3.952-2.89z"/></svg>
+                        Continue with Gmail
+                    </button>
+                </div>
+                <div class="flex justify-center">
+                    <hr class="w-1/2 border-1 border-[#fff] border-opacity-50 mt-3">
+                </div>
+                <div class="space-y-5 text-[#fff] pt-6">
+                    <div>
+                        <label class="block text-[#fff] text-lg" for="email_or_username">Email or username</label>
+                        <input class="block border border-[#818181] hover:border-[#fff] rounded bg-transparent text-white px-4 py-2 w-full h-10" type="text" id="email_or_username" placeholder="email or username">
+                    </div>
+                    <div>
+                        <label class="block text-gray-200 text-lg" for="password">Password</label>
+                        <input class="block border border-[#818181] hover:border-[#fff] rounded bg-transparent text-white px-4 py-2 w-full h-10" type="password" id="password" placeholder="password">
+                    </div>
+                </div>
+                <button class="button--login text-[#fff] bg-[#A35DE1] border border-[#fff] hover:text-[#A35DE1] hover:bg-[#fff] hover:border-[#A35DE1] font-bold py-2 px-4 rounded-3xl w-full mt-5">LOG IN
+                </button>
+                <div class="text-center mt-3">
+                    <a href="./resetPassword.html" class="text-[#fff] hover:text-[#A35DE1] underline text-sm">Forgot your password?</a>
+                </div>
+                <div class="text-center mt-3 text-[#fff] text-sm">
+                    Don't have an account? <a href="./logup.html" class="text-[#fff] font-bold hover:text-[#A35DE1]">Log up to <span class="font-Nunito font-bold text-sm">
+                        <span class="text-[#008DC6]">L</span><span class="text-[#3acf67]">ee</span><span
+                            class="text-[#C0C535]">l</span><span class="text-[#faa835]">u</span><span
+                            class="text-[#ee3a3a]">n</span></span>
+                            <span class="text-[#ffff] font-normal">life</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

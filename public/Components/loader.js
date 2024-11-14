@@ -45,7 +45,7 @@ class Page {
 }
 
 const PAGELOAD_LIBRARY = new Page('','')
-const PAGELOAD_EXPLORE = new Page('/Views/Pages/explore.html','content-page__explore')
+const PAGELOAD_EXPLORE = new Page('/Views/Pages/pageload_explore.html','content-page__explore')
 const PAGELOAD_LEELUNCHART = new Page('','')
 const PAGELOAD_NEW_MUSIC_CHART = new Page('','')
 const PAGELOAD_TOPIC_GENRE = new Page('','')
