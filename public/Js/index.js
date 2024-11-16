@@ -10,7 +10,8 @@ const onStart = () => {
     console.log('[FlowDebug](index.js - onStart): Index is starting..')
     console.log('[FlowDebug](index.js - onStart): Set default content: %s', PageLoader.PAGELOAD_EXPLORE.id_name)
 
-    reloadContent()
+    PageLoader.reloadContent()
+    // reloadContent()
 }
 
 onStart()
