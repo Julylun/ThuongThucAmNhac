@@ -1,0 +1,2 @@
+export const JWT_CONSTANT_KEY = 'OH MY FORK, IS THIS MY Leelun project??? De De, After this clause will be a random sentence: qwertyuiopASDFGHJKLzxcvbnm LALALA LELELE HHUHUHUUU jhsdkfhsdkfshdjfhlhsjdfhjsdjkhjgkvmlcngfdlkhjgioehgfdjgdjgkljdkflgjanmsfdm,hejthrjtkhfgjh'
+export const JWT_CONSTANT_TIME = '360000s'
