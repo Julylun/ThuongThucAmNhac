@@ -149,6 +149,30 @@
     }
 }
 
+@layer utilities {
+    .text-gradient {
+      background: linear-gradient(20deg, #FFBB00, #FF3EE5, #40DCFF, #FF2323); 
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .text-outline1 {
+        color: transparent;
+        -webkit-text-stroke: 1.5px #3f67a0;
+      }
+    .text-outline2 {
+        color: transparent;
+        -webkit-text-stroke: 1.5px #4bc7ae;
+    }
+    .text-outline3 {
+        color: transparent;
+        -webkit-text-stroke: 1.5px #d64d4e;
+    }
+    .text-outline4 {
+        color: transparent;
+        -webkit-text-stroke: 1.5px #aaa6ae;
+    }
+  }
+
 /* Width */
 ::-webkit-scrollbar {
     width: 5px;
