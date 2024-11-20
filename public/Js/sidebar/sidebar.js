@@ -36,4 +36,14 @@ const onStart = () => {
 
 }
 
+document.getElementById('createPlaylist').addEventListener('click', function (e) {
+    e.preventDefault();
+    document.getElementById('form_addPlaylist').classList.remove('hidden');
+});
+
+document.getElementById('close_createPlaylist').addEventListener('click', function () {
+    document.getElementById('form_addPlaylist').classList.add('hidden');
+});
+
 onStart()
+
