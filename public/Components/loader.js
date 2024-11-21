@@ -82,9 +82,9 @@ class Page {
 const PAGELOAD_LIBRARY = new Page('', '')
 const PAGELOAD_EXPLORE = new Page('/Views/Pages/pageload_explore.html', 'content-page__explore')
 const PAGELOAD_LEELUNCHART = new Page('/Views/Pages/pageload_leelunchart.html', 'content-page__leelunchart')
-const PAGELOAD_NEW_MUSIC_CHART = new Page('', '')
-const PAGELOAD_TOPIC_GENRE = new Page('', '')
-const PAGELOAD_TOP_100 = new Page('', '')
+const PAGELOAD_NEW_MUSIC_CHART = new Page('/Views/Pages/pageload_newMusicChart.html', 'content-page__newMusicChart')
+const PAGELOAD_TOPIC_GENRE = new Page('/Views/Pages/pageload_topic&genre.html', 'content-page__topic-genre')
+const PAGELOAD_TOP_100 = new Page('/Views/Pages/', 'content-page__')
 
 
 const getPageFromIndentifyData = (indentifyData) => {
