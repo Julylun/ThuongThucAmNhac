@@ -31,7 +31,10 @@ module.exports = {
       borderWidth: {
         '1.5':'1.5px',
 
-      }
+      },
+      textColor: {
+        'gradient-text': 'linear-gradient(to right, #2b1e7f, #834997)',
+      },
     },
   },
   plugins: [

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Thuong thuc am nhac</title>
+        <link rel="stylesheet" href="/Css/index-tailwind.css">
+    </head>
+    <body>
+        <aside id="side-bar"></aside>
+        <div id="main-content" class="flex-1 flex flex-col overflow-hidden">
+            <header id="navigation-bar"></header>
+            <div id="js__content"
+                class="flex-1 w-full bg-[#170F23] overflow-y-scroll">
+
+
+                <!-- The div nay se la the duoc dua vao index.html -->
+                <div id="content-page__NAME_OF_YOUR_PAGE"
+                    class=" w-full h-full">
+                    
+                    <!-- Viet content trong nay -->
+                </div>
+
+
+
+            </div>
+
+            <div class="w-[100%] h-[80px] bg-[#6B4C86] text-center text-[#fff] bottom-0">
+                <div class="grid grid-cols-5 gap-4 h-full items-center">
+                   
+                    <div class="bg-[#fff] col-span-1">01</div>
+                    <div class="col-span-1 bg-[#d670b4]">02</div>
+                    
+                    <div class="col-span-2 bg-[#de6363]">03 & 04</div>
+                    
+                    <div class="col-span-1 bg-[#95b85e]">05</div>
+                </div>
+            </div>
+
+
+        
+        </div>
+        
+        <script type="module" src="/Components/layout.js"></script>
+
+        <!-- Them class "page-script" neu muon chay js khi dung loader -->
+        <script class="page-script"></script> 
+
+        <!-- Them class "page-script" va class "no-reload" neu script do la CDN -->
+         <script class="page-script no-reload"></script>
+    </body>
+</html>
