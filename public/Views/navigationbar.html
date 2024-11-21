@@ -14,6 +14,20 @@
 
 
     <header id="navigation-bar" class="bg-[#170F23] w-full h-12 overflow-x-hidden flex items-center xl:h-16">
+
+      <div id="profile-box" class="profile-box hidden fixed flex-col right-0 top-0 w-64 h-80 mt-3 mr-3 shadow-xl bg-[#34224FFA] backdrop-blur-sm rounded-2xl bg-[#999]">
+        <div class="profile-box w-full h-fit flex flex-col items-center justify-center mt-4">
+          <img class="profile-box bg-[red] size-16 rounded-full" src="#">
+          <p class="profile-box w-fit mt-3 font-Nunito font-bold text-[white] text-xl">Hello Guest!</p>
+        </div>
+        <div class="profile-box flex-1 flex flex-col justify-around items-center ">
+          <a href="/Views/Pages/login.html"><button class="profile-box mt-14 rounded-2xl border border-[#FFF] stroke-2 bg-[pink]"><p class="font-Nunito text-[white] my-1 mx-3">Login to continue</p></button></a>
+          
+          <button><p class="profile-box text-[white] text-xs">I don't have account</p></button>
+        </div>
+      </div>
+
+
       <button class="ml-4">
         <svg class="size-8" viewBox="0 0 24 24">
           <rect id="view-box" width="24" height="24" fill="#141124" opacity="0" />
@@ -44,18 +58,15 @@
           placeholder="Search songs, albums, artists...">
       </div>
 
-      <a class="ml-auto mr-4" href="/Views/login.html">
-        <button class="ml-auto mr-4">
+        <button id="js__profile-button" class="ml-auto mr-4">
         <svg class="size-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="9" r="3" stroke="#FFF" stroke-width="1.5" />
           <circle cx="12" cy="12" r="10" stroke="#FFF" stroke-width="1.5" />
           <path d="M17.9691 20C17.81 17.1085 16.9247 15 11.9999 15C7.07521 15 6.18991 17.1085 6.03076 20"
             stroke="#FFF" stroke-width="1.5" stroke-linecap="round" />
         </svg>
-
       </button>
 
-      </a>
           </header>
 
 
@@ -67,5 +78,5 @@
 
 
 </body>
-
+<script type="module" src="../Components/navigationbar/navigationbar.js"></script>
 </html>
