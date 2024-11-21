@@ -1,5 +1,8 @@
-import { Column, Entity, IntegerType, PrimaryColumn, PrimaryGeneratedColumn, Unique } from 'typeorm'
+import { Column, Entity, IntegerType, OneToMany, PrimaryColumn, PrimaryGeneratedColumn, Unique } from 'typeorm'
 import { UserType } from './person.enum';
+import { AccessToken } from '../auth/accesstoken/accesstoken.entity';
+import { Playlist } from '../playlist/playlist.entity';
+import { plainToClass } from 'class-transformer';
 
 @Entity('Person')
 export class Person {
@@ -22,6 +25,12 @@ export class Person {
         default: UserType.User
     })
     personType: UserType
+
+    @OneToMany(type => AccessToken, accessToken => accessToken.person)
+    accessTokens: AccessToken[];
+
+    @OneToMany(type => Playlist, playlist => playlist.person)
+    playlists: Playlist[];
 
     //TODO: Create find, findAll, create, update, delete methods
 }

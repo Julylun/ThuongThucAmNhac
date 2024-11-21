@@ -11,6 +11,6 @@ async function bootstrap() {
     });
     app.enableCors()    // Thiết lập thư mục chứa file tĩnh
     app.useStaticAssets(join(__dirname, 'ThuongThucAmNhac/public'));
-    await app.listen(3000);
+    await app.listen(27075);
 }
 bootstrap();
