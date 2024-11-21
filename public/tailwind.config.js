@@ -20,7 +20,9 @@ module.exports = {
         '27':'6.5rem',
         '28':'7rem',
         '29':'7.5rem',
-        '30':'8rem'
+        '30':'8rem',
+        '100':'30rem',
+        '103':'34rem'
       },
       textStrokeWidth: {
         '1':'1px',
