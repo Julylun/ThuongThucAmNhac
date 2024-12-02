@@ -30,13 +30,13 @@ const createMusicItem = (songName, songAuthor, imageSource, parentElement) => {
         button
     );
     createElement(
-        'img', ['bg-[#AAA]', 'size-20', 'mt-4', 'mb-4', 'rounded-lg', 'group-hover:size-24', 'group-hover:mt-2', 'group-hover:mb-2', 'md:size-14', 'md:group-hover:size-16', 'md:mt-3', 'md:mb-3', 'md:group-hover:mt-2', 'md:group-hover:mb-2', 'md:rounded-sm'], musicItem, { src: imageSource }
+        'img', ['bg-[#AAA]', 'size-20', 'mt-4', 'mb-4', 'rounded-lg', 'group-hover:size-24', 'group-hover:mt-2', 'group-hover:mb-2', 'md:size-14', 'md:group-hover:size-16', 'md:mt-3', 'md:mb-3', 'md:group-hover:mt-2', 'md:group-hover:mb-2', 'md:rounded-sm','object-cover', 'transition-all'], musicItem, { src: imageSource }
     );
     const textContainer = createElement(
         'div', ['ml-3', 'flex', 'flex-col'], musicItem
     );
     createElement(
-        'p', ['font-semibold', 'text-xl', 'text-[#FFF]', 'group-hover:text-[#FDC018]', 'md:text-base'], textContainer, { innerHTML: songName }
+        'p', ['font-semibold', 'text-xl', 'text-[#FFF]','text-left', 'group-hover:text-[#FDC018]', 'md:text-base'], textContainer, { innerHTML: songName }
     );
     createElement(
         'p', ['font-semibold', 'text-sm', 'text-[#888888]', 'text-left', 'group-hover:text-[#D3AA71]', 'md:text-sm'], textContainer, { innerHTML: songAuthor }

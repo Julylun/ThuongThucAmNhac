@@ -1,20 +1,66 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+  <head>
     <title>Thuong thuc am nhac</title>
     <link rel="stylesheet" href="./Css/index-tailwind.css">
-</head>
 
-<body>
-    <aside id="side-bar"></aside> 
+    <style>
+            /* Định nghĩa nút kéo trên các trình duyệt khác nhau */
+            .range-slider::-webkit-slider-thumb {
+              appearance: none;
+              width: 16px; /* Độ rộng của nút kéo */
+              height: 16px; /* Chiều cao của nút kéo */
+              background-color: #ff9fed; /* Màu nút kéo */
+              border-radius: 50%; /* Bo tròn nút kéo */
+              cursor: pointer;
+              transition: background-color 1s ease-in-out;
+            }
+          
+            .range-slider::-moz-range-thumb {
+              width: 16px;
+              height: 16px;
+              background-color: #ff9fed;
+              border-radius: 50%;
+              cursor: pointer;
+              transition: background-color 0.2s ease-in-out;
+            }
+          
+            .range-slider::-ms-thumb {
+              width: 16px;
+              height: 16px;
+              background-color: #ff9fed;
+              border-radius: 50%;
+              cursor: pointer;
+              transition: background-color 0.2s ease-in-out;
+            }
+          
+            /* Hiệu ứng khi di chuột vào nút kéo */
+            .range-slider::-webkit-slider-thumb:hover {
+              background-color: #f472b6; /* Màu nút kéo khi hover */
+              transition: background-color 1s ease-in-out;
+
+            }
+          
+            .range-slider::-moz-range-thumb:hover,
+            .range-slider::-ms-thumb:hover {
+              background-color: #f472b6;
+            }
+          </style>
+
+  </head>
+
+  <body>
+    <aside id="side-bar"></aside>
     <div id="main-content" class="flex-1 flex flex-col overflow-hidden">
-        <header id="navigation-bar" class=""></header>
-        <div id="js__content" class="">
-            
-        </div>
+      <header id="navigation-bar" class></header>
+      <div id="js__content" class>
+
+      </div>
+      <div id="control-bar"></div>
     </div>
     <script type="module" src="./Components/layout.js"></script>
     <script type="module" src="./Js/index.js"></script>
-</body>
+    <script type="module" src="./Test/indexTest.js"></script>
+  </body>
 </html>

@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Playlist } from './playlist.entity';
 import { Repository } from 'typeorm';
 import { Person } from '../person/person.entity';
-import { retry } from 'rxjs';
 
 @Injectable()
 export class PlaylistService {

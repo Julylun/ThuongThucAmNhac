@@ -41,11 +41,6 @@ class Page {
                 script.remove()
             }
         }
-        // if(document.getElementsByClassName('page-script').length != 0) {
-        // break
-        // }
-
-        // }
 
         let contentParent = document.getElementById('js__content')
 
@@ -70,12 +65,7 @@ class Page {
 
                 document.body.appendChild(script)
             }
-            // eval(await File.getTextFromFile(tempScript.src))
-            // console.log('script: ' + tempScript.text)
-
         }
-
-        //TODO: Create script file and remove all old script file
     }
 }
 

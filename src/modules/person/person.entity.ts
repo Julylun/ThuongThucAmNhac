@@ -1,9 +1,17 @@
-import { Column, Entity, IntegerType, OneToMany, PrimaryColumn, PrimaryGeneratedColumn, Unique } from 'typeorm'
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, TableInheritance, Unique } from 'typeorm'
 import { UserType } from './person.enum';
 import { AccessToken } from '../auth/accesstoken/accesstoken.entity';
 import { Playlist } from '../playlist/playlist.entity';
-import { plainToClass } from 'class-transformer';
+import { RefreshToken } from '../auth/refreshtoken/entity/refreshtoken.entity';
+import { Song } from '../song/entity/song.entity';
 
+
+export interface PersonParams {
+    personId: number;
+    personName: string;
+    personEmail: string;
+    personType: UserType
+}
 @Entity('Person')
 export class Person {
     @PrimaryGeneratedColumn()
@@ -17,10 +25,13 @@ export class Person {
     personEmail: string;
 
     @Column()
+    personAvatar: string;
+
+    @Column()
     personPassword: string;
 
     @Column({
-        type: 'enum',
+        type: 'int',
         enum: UserType,
         default: UserType.User
     })
@@ -29,8 +40,17 @@ export class Person {
     @OneToMany(type => AccessToken, accessToken => accessToken.person)
     accessTokens: AccessToken[];
 
+    @OneToMany(type => RefreshToken, refreshToken => refreshToken.person)
+    refreshToken: RefreshToken[];
+
     @OneToMany(type => Playlist, playlist => playlist.person)
     playlists: Playlist[];
 
-    //TODO: Create find, findAll, create, update, delete methods
+
+    @OneToMany(() => Song, (song) => song.songArtist)   
+    createdSongs: Song[]
+
+
 }
+
+// export default Person;
