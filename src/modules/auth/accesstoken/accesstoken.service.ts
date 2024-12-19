@@ -48,6 +48,12 @@ export class AccesstokenService {
         }
     }
 
+    /**
+     * decode and verify access token.
+     * @param jwtToken 
+     * @returns number (userId if access token is valid)
+     * @returns number (-404 if access token is expired or invalid)
+     */
     decodeToUserId(jwtToken: string): number {
         try {
             let decodedToken = this.jwtService.verify(jwtToken)

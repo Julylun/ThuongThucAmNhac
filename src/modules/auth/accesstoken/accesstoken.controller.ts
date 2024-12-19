@@ -9,7 +9,7 @@ import { RefreshToken } from '../refreshtoken/entity/refreshtoken.entity';
 import { RefreshTokenService } from '../refreshtoken/refreshtoken.service';
 import { PersonService } from 'src/modules/person/person.service';
 
-@Controller('/api/auth/accesstoken')
+@Controller({path: 'auth/accesstoken', version: '1'})
 export class AccesstokenController {
     constructor(
         private readonly accessTokenService: AccesstokenService,

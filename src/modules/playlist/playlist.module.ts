@@ -5,15 +5,19 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Playlist } from './playlist.entity';
 import { PersonModule } from '../person/person.module';
 import { SongModule } from '../song/song.module';
+import { AccesstokenModule } from '../auth/accesstoken/accesstoken.module';
+import { AccesstokenService } from '../auth/accesstoken/accesstoken.service';
+import { PersonService } from '../person/person.service';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Playlist]),
     forwardRef(() => PersonModule) ,
-    SongModule
+    SongModule,
+    forwardRef(() => AccesstokenModule)
   ],
   controllers: [PlaylistController],
-  providers: [PlaylistService],
+  providers: [PlaylistService, AccesstokenService, PersonService],
   exports: [TypeOrmModule]
 })
 export class PlaylistModule { }

@@ -1,10 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { RegisterDto } from './register.dto';
-import { InjectRepository } from '@nestjs/typeorm';
 import { Person } from 'src/modules/person/person.entity';
-import { Repository } from 'typeorm';
-import { targetModulesByContainer } from '@nestjs/core/router/router-module';
-import { UserType } from 'src/modules/person/person.enum';
+import { UserStatus, UserType } from 'src/modules/person/person.enum';
 import { PersonService } from 'src/modules/person/person.service';
 var bcrypt = require('bcryptjs')
 
@@ -30,7 +27,8 @@ export class RegisterService {
             personName: registerDto.username,
             personEmail: registerDto.userEmail,
             personPassword: encryptedPassword,
-            personType: UserType.User
+            personType: UserType.User,
+            personStatus: UserStatus.Alived
         });
     }
 

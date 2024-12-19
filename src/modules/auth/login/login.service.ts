@@ -24,11 +24,12 @@ export class LoginService {
 
     async login(email: string, password: string): Promise<ResponseData<{ accessToken: string, refreshToken: string }>> {
         try {
-            const userAccount = await this.personRepository.findOneBy({ personName: email });
+            this.logger.debug('[login]: ',email + ' | ' + password)
+            const userAccount = await this.personRepository.findOneBy({ personEmail: email });
 
             this.logger.debug(userAccount);
 
-            if (!bcrypt.compare(email, userAccount.personPassword)) {
+            if (!bcrypt.compare(password, userAccount.personPassword)) {
                 return null;
             }
 

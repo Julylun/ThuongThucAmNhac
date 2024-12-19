@@ -7,7 +7,7 @@ import { AnyFilesInterceptor } from '@nestjs/platform-express';
 import { ResponseData } from 'src/common/class.global';
 import { HttpCode, HttpMessage } from 'src/common/enum.global';
 
-@Controller('/api/register')
+@Controller({path: 'register', version: '1'})
 export class RegisterController {
     constructor(private readonly registerService: RegisterService) { }
     private readonly log = new Logger(RegisterController.name)

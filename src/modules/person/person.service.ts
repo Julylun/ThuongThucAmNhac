@@ -2,8 +2,10 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Person } from './person.entity';
 import { Repository } from 'typeorm';
-import { PersonDataDto } from './dto/persondata.dto';
-import { UserType } from './person.enum';
+import { PersonResponseDto } from './dto/personResponse.dto';
+import { UserStatus, UserType } from './person.enum';
+import { CreatePersonDto } from './dto/createPerson.dto';
+import { UpdatePersonDto } from './dto/updatePerson.dto';
 
 @Injectable()
 export class PersonService {
@@ -26,14 +28,36 @@ export class PersonService {
         }
     }
 
-    personObjectToPersonDataDto(person: Person): PersonDataDto {
-        return new PersonDataDto({
-            personId: person.personId,
-            personName: person.personName,
-            personEmail: person.personEmail,
-            personType: person.personType,
-            personAvatar: person.personAvatar
-        })
+    /**
+     * Transfer person instance into Person Dto instance
+     * @param person 
+     * @param dtoName 
+     * @returns PersonResponseDto | CreatePersonDto | UpdatePersonDto
+     * @throws {Error("Wrong Dto type")}: Throw when dtoName is wrong
+     * @throws
+     */
+    personToPersonDto(person: Person, dtoName: string): PersonResponseDto | CreatePersonDto | UpdatePersonDto {
+        try {
+            if(!person) throw new Error("Person is null");
+            switch (dtoName) {
+                case PersonResponseDto.name: {
+                    return PersonResponseDto.from(person);
+                }
+                case CreatePersonDto.name: {
+                    return CreatePersonDto.from(person)
+                }
+                case UpdatePersonDto.name: {
+                    return UpdatePersonDto.from(person);
+                }
+                default: {
+                    throw new Error("Wrong DTO type");
+                }
+            }
+        } catch (error) {
+            this.logger.error('[personToPersonDto]: An error occus');
+            this.logger.error(error);
+            throw error;
+        }
     }
 
     async getPerson(personId: number): Promise<Person> {
@@ -42,14 +66,15 @@ export class PersonService {
 
 
             let personInstance = await this.personRepository.findOneBy({ personId: personId });
-            
-            if(personInstance == null) {
+
+            if (personInstance == null) {
                 throw new Error("Person not found");
             }
             this.logger.debug("Person found");
             this.logger.debug("Person data: " + personInstance);
             return personInstance;
         } catch (e) {
+            this.logger.error('[getPerson]: An error occurs.');
             console.log(e);
             return null;
         }
@@ -75,11 +100,23 @@ export class PersonService {
 
             person.personType = userType;
             return await this.personRepository.save(person);
-            
+
         } catch (e) {
             console.log(e);
             return null;
         }
     }
 
+    async changeStatus(person: Person, userStatus: UserStatus) {
+        try {
+            this.logger.debug("Changing user status");
+
+            person.personStatus = userStatus;
+            return await this.personRepository.save(person);
+        } catch (e) {
+            console.log(e);
+            return null;
+        }
+
+    }
 }

@@ -1,0 +1,6 @@
+{
+    "api_protocal":"http",
+    "api_base":"localhost",
+    "api_port":"27075",
+    "api_version":"v1"
+}

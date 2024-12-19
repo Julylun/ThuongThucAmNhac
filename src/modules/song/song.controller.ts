@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Logger, Post, Query, Req, Res, UploadedFile, UploadedFiles, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, InternalServerErrorException, Logger, Post, Query, Req, Res, UploadedFile, UploadedFiles, UseGuards, UseInterceptors } from '@nestjs/common';
 import { FilesInterceptor, NoFilesInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
@@ -15,8 +15,17 @@ import { SongInfoDto, songsToSongInfoDtos } from './dto/songinfo.dto';
 import { createReadStream, statSync } from 'fs';
 import { parseFile } from 'music-metadata';
 import * as mime from 'mime-types';
+import { ApiBody, ApiOperation, ApiQuery, ApiResponse } from '@nestjs/swagger';
+import { InternalServerErrorExampleDto } from 'src/api_docs/exampleDto/internalservererror-example.dto';
+import { NotFoundExampleDto } from 'src/api_docs/exampleDto/notfound-example.dto';
+import { UnauthorizedExampleDto } from 'src/api_docs/exampleDto/unauthorized-example.dto';
+import { BadRequestCreatePersonDto } from 'src/api_docs/exampleDto/person/badrequest-createPerson.dto';
+import { CreatedExampleDto } from 'src/api_docs/exampleDto/created-example.dto';
+import { ForbiddenExampleDto } from 'src/api_docs/exampleDto/forbidden-example.dto';
+import { BadRequestExampleDto } from 'src/api_docs/exampleDto/badrequest-example.dto';
+import { OkSongResponseDto } from 'src/api_docs/exampleDto/song/ok-songResponse.dto';
 
-@Controller('api/song')
+@Controller({ path: 'song', version: '1' })
 export class SongController {
     constructor(
         private songService: SongService,
@@ -26,6 +35,30 @@ export class SongController {
 
     private logger = new Logger(SongController.name)
 
+    @ApiOperation({
+        summary: '[Get song]: Get song stream by using song id'
+    })
+    @ApiQuery({
+        name: 'id',
+        type: Number,
+        description: 'The Id of searching song',
+        required: true,
+        example: 1
+    })
+    @ApiResponse({
+        status: HttpCode.OK,
+        description: '[200 - OK]: Return an music stream (To easily understand, try to access this api through google search).',
+    })
+    @ApiResponse({
+        status: HttpCode.NOT_FOUND,
+        description: '[404 - Not found]: Return nothing because the song is not found.',
+        type: NotFoundExampleDto
+    })
+    @ApiResponse({
+        status: HttpCode.INTERNAL_SERVER_ERROR,
+        description: '[500 - Internal server error]: An unknown error occured while executing the request.',
+        type: InternalServerErrorExampleDto
+    })
     @Get('stream')
     async streamSong(@Query('id') id: number, @Res() res: Response) {
         try {
@@ -41,7 +74,7 @@ export class SongController {
 
             let songFile = await parseFile(song.songPath)
             let mimeType = mime.lookup(song.songPath);
-            
+
 
             this.logger.debug('Song file parsed, file format is below this line');
             this.logger.debug(songFile);
@@ -58,7 +91,7 @@ export class SongController {
             fileStream.pipe(res);
         } catch (e) {
             switch (e.message) {
-                case 'NOT_FOUND': {  
+                case 'NOT_FOUND': {
                     this.logger.error(e.message);
                     res.status(HttpCode.NOT_FOUND);
                     res.statusMessage = HttpMessage.NOT_FOUND;
@@ -74,6 +107,38 @@ export class SongController {
         }
     }
 
+
+    @ApiOperation({
+        summary: '[Create song]: Upload song by using form data and file'
+    })
+    @ApiBody({
+        description: 'This form data requires:\n+ files: Image File (png, jpeg, jpg)\n+ files: Music File (mp3, mpeg, wav)\n+ songName: string<br>Learn more at: [Use file in form data object tutorial](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest_API/Using_FormData_Objects)'
+    })
+    @ApiResponse({
+        status: HttpCode.CREATED,
+        description: '[201 - Created]: Create song successfully.',
+        type: CreatedExampleDto
+    })
+    @ApiResponse({
+        status: HttpCode.BAD_REQUEST,
+        description: '[400 - Bad request]: Missing required parameters.',
+        type: BadRequestExampleDto
+    })
+    @ApiResponse({
+        status: HttpCode.FORBIDDEN,
+        description: '[403 - Forbidden]: User dont have permission to upload song.',
+        type: ForbiddenExampleDto
+    })
+    @ApiResponse({
+        status: HttpCode.UNAUTHORIZED,
+        description: '[401 - Not found]: Missing Access token or its wrong/expired.',
+        type: UnauthorizedExampleDto
+    })
+    @ApiResponse({
+        status: HttpCode.INTERNAL_SERVER_ERROR,
+        description: '[500 - Internal server error]: An unknown error occured while executing the request.',
+        type: InternalServerErrorExampleDto
+    })
     @Post('upload')
     @UseInterceptors(
         FilesInterceptor('files', 2, {  // Sử dụng FilesInterceptor cho hai file: một cho nhạc và một cho hình ảnh
@@ -158,52 +223,75 @@ export class SongController {
             return;
         } catch (e) {
             switch (e.message) {
+                case 'UNAUTHORIZED': {
+                    this.logger.error(e.message);
+                    res.status(HttpCode.UNAUTHORIZED);
+                    res.statusMessage = HttpMessage.UNAUTHORIZED;
+                    res.send(new ResponseData<null>({ data: null, statusCode: HttpCode.UNAUTHORIZED, message: HttpMessage.UNAUTHORIZED }));
+                    return;
+                }
                 case 'FORBIDDEN': {
                     this.logger.error(e.message);
                     res.status(HttpCode.FORBIDDEN);
                     res.statusMessage = HttpMessage.FORBIDDEN;
-                    res.send(new ResponseData<{}>({ data: {}, statusCode: HttpCode.FORBIDDEN, message: HttpMessage.FORBIDDEN }));
+                    res.send(new ResponseData<null>({ data: null, statusCode: HttpCode.FORBIDDEN, message: HttpMessage.FORBIDDEN }));
                     return;
                 }
                 case 'BAD_REQUEST': {
                     this.logger.error(e.message);
                     res.status(HttpCode.BAD_REQUEST);
                     res.statusMessage = HttpMessage.BAD_REQUEST;
-                    res.send(new ResponseData<{}>({ data: {}, statusCode: HttpCode.BAD_REQUEST, message: HttpMessage.BAD_REQUEST }));
+                    res.send(new ResponseData<null>({ data: null, statusCode: HttpCode.BAD_REQUEST, message: HttpMessage.BAD_REQUEST }));
                     return;
                 }
             }
             this.logger.error(e.message);
             res.status(HttpCode.INTERNAL_SERVER_ERROR);
             res.statusMessage = HttpMessage.INTERNAL_SERVER_ERROR;
-            res.send(new ResponseData<{}>({ data: {}, statusCode: HttpCode.INTERNAL_SERVER_ERROR, message: HttpMessage.INTERNAL_SERVER_ERROR }));
+            res.send(new ResponseData<null>({ data: null, statusCode: HttpCode.INTERNAL_SERVER_ERROR, message: HttpMessage.INTERNAL_SERVER_ERROR }));
             return;
         }
     }
 
-
+    @ApiOperation({
+        summary: '[Get suggest song]: Get sugget song following some conditions (This method is still updating)'
+    })
+    @ApiResponse({
+        status: HttpCode.OK,
+        description: '[200 - Accept]: Get suggestion song successfully',
+        type: OkSongResponseDto
+    })
+    @ApiResponse({
+        status: HttpCode.INTERNAL_SERVER_ERROR,
+        description: '[500 - Internal server error]: ',
+        type: InternalServerErrorExampleDto
+    })
     @Get('suggest')
     async getSong(
         @Req() req: Request,
         @Res() res: Response
     ) {
+        this.logger.log('[getSong - suggest]: A client sent a request to this server to execute');
+        let responseData: ResponseData<any> = null;
         try {
-            this.logger.debug('Get song by suggest type');
             let songs = await this.songService.getSongsByListenTime()
-            if (songs == null) {
+            if (!songs) {
                 this.logger.error('Unknown error || songs is null');
                 throw new Error('INTERNAL_SERVER_ERROR');
             }
-            res.status(HttpCode.OK);
-            res.statusMessage = HttpMessage.OK;
-            res.send(new ResponseData<SongInfoDto[]>({ data: songsToSongInfoDtos(songs), statusCode: HttpCode.OK, message: HttpMessage.OK }));
-            return;
+            responseData = new ResponseData<SongInfoDto[]>({ data: songsToSongInfoDtos(songs), statusCode: HttpCode.OK, message: HttpMessage.OK })
         } catch (e) {
             this.logger.error(e.message);
-            res.status(HttpCode.INTERNAL_SERVER_ERROR);
-            res.statusMessage = HttpMessage.INTERNAL_SERVER_ERROR;
-            res.send(new ResponseData<{}>({ data: {}, statusCode: HttpCode.INTERNAL_SERVER_ERROR, message: HttpMessage.INTERNAL_SERVER_ERROR }));
-            return;
+            switch (e.message) {
+                default: {
+                    responseData = new ResponseData<{}>({ data: {}, statusCode: HttpCode.INTERNAL_SERVER_ERROR, message: HttpMessage.INTERNAL_SERVER_ERROR })
+                    break;
+                }
+            }
+        } finally {
+            res.statusCode = responseData.statusCode;
+            res.statusMessage = responseData.message;
+            res.send(responseData);
         }
     }
 

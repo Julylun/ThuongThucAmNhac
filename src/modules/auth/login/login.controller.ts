@@ -9,8 +9,9 @@ import { HttpCode, HttpMessage } from 'src/common/enum.global';
 import { accessSync } from 'fs';
 import { log } from 'console';
 import { Request, Response } from 'express';
+import { ApiBody } from '@nestjs/swagger';
 
-@Controller('/api/login')
+@Controller({path: 'login', version: '1'})
 export class LoginController {
     constructor(private readonly loginService: LoginService) { }
     private readonly logger = new Logger(LoginController.name)
@@ -29,14 +30,19 @@ export class LoginController {
      * @param res 
      */
     @Post()
+    @ApiBody({
+        description: '',
+        type: LoginDto
+    })
     @UsePipes(new ValidationPipe())
     @UseInterceptors(AnyFilesInterceptor())
     async login(@Body(new ParseFormDataToStringPipe()) loginDto: LoginDto, @Req() req: Request, @Res() res: Response) {
-        this.logger.debug(req.ip + " - Start a request");
+        this.logger.debug("[login]"," Client start a request");
         let loginPromise = null;
         try {
-            this.logger.debug(req.ip + "- Start login progress");
-            loginPromise = await this.loginService.login(loginDto.username, loginDto.password);
+            this.logger.debug('[login]','Client form data will print out below this line');
+            this.logger.debug(loginDto)
+            loginPromise = await this.loginService.login(loginDto.email, loginDto.password);
 
             this.logger.debug(req.ip + "- Login completed");
             if (loginPromise.statusCode != HttpCode.ACCEPTED) {

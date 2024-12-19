@@ -1,6 +1,8 @@
+import { ApiService } from './apiService.js'
 
 const fetchGetUser = async () => {
-    return await fetch('/api/user', {
+    const apiBase = ApiService.getApiBase() + 'user'
+    return await fetch(apiBase, {
         method: 'GET',
         headers: {
             "Authorization": "Bearer " + localStorage.getItem('accessToken'),

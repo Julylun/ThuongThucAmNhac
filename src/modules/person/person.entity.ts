@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, TableInheritance, Unique } from 'typeorm'
-import { UserType } from './person.enum';
+import { UserStatus, UserType } from './person.enum';
 import { AccessToken } from '../auth/accesstoken/accesstoken.entity';
 import { Playlist } from '../playlist/playlist.entity';
 import { RefreshToken } from '../auth/refreshtoken/entity/refreshtoken.entity';
@@ -29,6 +29,13 @@ export class Person {
 
     @Column()
     personPassword: string;
+
+    @Column({
+        type: 'int',
+        enum: UserStatus,
+        default: UserStatus.Alived
+    })
+    personStatus: number
 
     @Column({
         type: 'int',

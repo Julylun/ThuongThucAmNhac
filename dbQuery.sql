@@ -9,7 +9,8 @@ CREATE TABLE Person (
   personEmail VARCHAR(255) UNIQUE NOT NULL,
   personAvatar TEXT NULL,
   personPassword VARCHAR(255) NOT NULL,
-  personType INT NOT NULL
+  personType INT NOT NULL,
+  personStatus INT NOT NULL
 );
 
 CREATE TABLE AccessToken (
