@@ -63,15 +63,15 @@
 
             </div>
 
-            <div class="w-[100%] h-[80px] bg-[#6B4C86] text-center text-[#fff] bottom-0">
+            <div id="control-bar" class="w-[100%] h-[80px] bg-[#6B4C86] text-center text-[#fff] bottom-0">
                 <div class="grid grid-cols-5 gap-4 h-full items-center">
                     <!-- SONG -->
                     <div class="bg-transparent col-span-1">
                         <div class="ml-3 _music-item group font-Nunito flex flex-row items-center w-full">
-                            <img class="bg-[#AAA] size-20 mt-4 mb-4 rounded-full md:mt-2 md:mb-2 md:size-14" src="#">
+                            <img id="control-song-image" class="bg-[#AAA] size-20 mt-4 mb-4 rounded-full md:mt-2 md:mb-2 md:size-14" src="#">
                             <div class="ml-4 flex flex-col">
-                                <p class="font-bold text-xl text-[#FFF]">Say sóng</p>
-                                <p class="text-sm font-thin text-[#fff]">Tăng Duy Tân</p>
+                                <p id="control-song-name" class="font-bold text-xl text-left text-[#FFF]">Ngay Ly Di</p>
+                                <p id="control-song-author" class="text-sm font-thin text-left text-[#fff]">RulyLun</p>
                             </div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                     <div class="col-span-1 bg-transparent flex place-content-between">
                         <div class="flex justify-center space-x-6">
                             <!-- Previous -->
-                            <button class="">
+                            <button id="control-previous-button" class="">
                                 <svg class="w-[25px] h-[25px] rotate-180" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <title>Next</title>
                                     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -95,7 +95,7 @@
                                 </svg>
                             </button>
                             <!-- Play -->
-                            <button>
+                            <button id="control-play-button">
                                 <svg class="w-[35px] h-[35px]" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
                                     <title>play-circle</title>
                                     <g id="Layer_2" data-name="Layer 2">
@@ -112,7 +112,8 @@
                                 </svg>
                             </button>
                             <!-- Next -->
-                            <button>
+                            <button id="control-next-button">
+
                                 <svg class="w-[25px] h-[25px]" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <title>Next</title>
                                     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -144,7 +145,7 @@
                             <h1 class="text-sm text-[#fff]">00:00</h1>
                         </div>
                         <div class="col-span-10">
-                            <input id="music-slider" type="range" min="0" max="100" value="50" step="1" class="w-full bg-[#ead6fc] h-2 appearance-none rounded-lg focus:outline-none">
+                            <input id="music-slider" type="range" min="0" max="100" value="0" step=".1"  class="w-full bg-[#ead6fc] h-2 appearance-none rounded-lg focus:outline-none">
                         </div>
                         <div class="col-span-1">
                             <h1 class="text-sm text-[#fff]">00:00</h1>

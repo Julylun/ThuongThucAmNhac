@@ -1,0 +1,62 @@
+Entrypoint main 131 KiB = main.js 128 KiB 0.ebf85c66f1fff841f4c9.hot-update.js 2.17 KiB
+webpack 5.94.0 compiled successfully in 587 ms
+/home/julylun/WebstormProjects/ThuongThucAmNhac/dist/main.js:2274
+/******/                        throw e;
+                                ^
+
+TypeError: Class extends value undefined is not a constructor or null
+    at Object.<anonymous> (/home/julylun/WebstormProjects/ThuongThucAmNhac/dist/main.js:775:51)
+    at __webpack_require__ (/home/julylun/WebstormProjects/ThuongThucAmNhac/dist/main.js:2271:33)
+    at fn (/home/julylun/WebstormProjects/ThuongThucAmNhac/dist/main.js:2377:21)
+    at Object.<anonymous> (/home/julylun/WebstormProjects/ThuongThucAmNhac/dist/main.js:721:25)
+    at __webpack_require__ (/home/julylun/WebstormProjects/ThuongThucAmNhac/dist/main.js:2271:33)
+    at fn (/home/julylun/WebstormProjects/ThuongThucAmNhac/dist/main.js:2377:21)
+    at Object.<anonymous> (/home/julylun/WebstormProjects/ThuongThucAmNhac/dist/main.js:673:23)
+    at __webpack_require__ (/home/julylun/WebstormProjects/ThuongThucAmNhac/dist/main.js:2271:33)
+    at fn (/home/julylun/WebstormProjects/ThuongThucAmNhac/dist/main.js:2377:21)
+    at Object.<anonymous> (/home/julylun/WebstormProjects/ThuongThucAmNhac/dist/main.js:541:27)
+
+
+
+
+    1) modules/person/person.entity.ts > modules/playlist/playlist.entity.ts
+2) modules/artist/artist.entity.ts > modules/person/person.entity.ts > modules/playlist/playlist.entity.ts > modules/song/entity/song.entity.ts
+3) modules/playlist/playlist.entity.ts > modules/song/entity/song.entity.ts
+4) modules/artist/artist.module.ts > modules/playlist/playlist.module.ts
+5) modules/artist/artist.module.ts > modules/playlist/playlist.module.ts > modules/person/person.module.ts
+6) modules/playlist/playlist.module.ts > modules/person/person.module.ts
+7) modules/artist/artist.module.ts > modules/playlist/playlist.module.ts > modules/song/song.module.ts
+8) modules/playlist/playlist.module.ts > modules/song/song.module.ts
+
+
+
+// FileInterceptor('image', {
+        //     storage: diskStorage({
+        //         destination: './uploads/songs/image',
+        //         filename: (req, file, callback) => {
+        //             let logger = new Logger(SongController.name);
+        //             logger.debug('START parse image file');
+        //             logger.debug(file.filename);
+        //             const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+        //             const ext = extname(file.originalname);
+        //             logger.debug(file.fieldname + '-' + uniqueSuffix + ext);
+        //             logger.debug('END image file');
+        //             callback(null, file.fieldname + '-' + uniqueSuffix + ext);
+        //         },
+        //     }),
+        //     fileFilter: (req, file, callback) => {
+        //         const logger = new Logger(SongController.name);
+        //         logger.debug('image filter -> ' + file);
+        //         const allowedMimeTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+        //         if (allowedMimeTypes.includes(file.mimetype)) {
+        //             callback(null, true);
+        //         } else {
+        //             callback(new Error('Invalid file type.'), false);;
+        //         }
+        //     },
+        //     limits: {
+        //         fileSize: 1024 * 1024 * 5, //Limit maximum size is 5mb,
+        //         fieldSize: 1
+        //     },
+        // })
+ 

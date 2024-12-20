@@ -1,21 +1,20 @@
 import { Module } from '@nestjs/common';
 import { LoginController } from './login.controller';
 import { LoginService } from './login.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Person } from 'src/modules/person/person.entity';
-import { JwtModule } from '@nestjs/jwt';
-import { JWT_CONSTANT_KEY, JWT_CONSTANT_TIME } from 'src/common/constant/jwt.constant';
+import { AccesstokenModule } from '../accesstoken/accesstoken.module';
+import { RefreshtokenModule } from '../refreshtoken/refreshtoken.module';
+import { PersonModule } from 'src/modules/person/person.module';
+import { AccesstokenService } from '../accesstoken/accesstoken.service';
+import { RefreshTokenService } from '../refreshtoken/refreshtoken.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Person]),
-    JwtModule.register({
-      global: true,
-      secret: JWT_CONSTANT_KEY, 
-      signOptions: { expiresIn: '36000s'}
-    })
+    AccesstokenModule,
+    RefreshtokenModule,
+    PersonModule
   ],
   controllers: [LoginController],
-  providers: [LoginService]
+  providers: [LoginService,AccesstokenService,RefreshTokenService],
+  exports: [LoginModule]
 })
-export class LoginModule {}
+export class LoginModule { }

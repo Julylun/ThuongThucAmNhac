@@ -41,11 +41,6 @@ class Page {
                 script.remove()
             }
         }
-        // if(document.getElementsByClassName('page-script').length != 0) {
-        // break
-        // }
-
-        // }
 
         let contentParent = document.getElementById('js__content')
 
@@ -70,21 +65,16 @@ class Page {
 
                 document.body.appendChild(script)
             }
-            // eval(await File.getTextFromFile(tempScript.src))
-            // console.log('script: ' + tempScript.text)
-
         }
-
-        //TODO: Create script file and remove all old script file
     }
 }
 
 const PAGELOAD_LIBRARY = new Page('', '')
 const PAGELOAD_EXPLORE = new Page('/Views/Pages/pageload_explore.html', 'content-page__explore')
 const PAGELOAD_LEELUNCHART = new Page('/Views/Pages/pageload_leelunchart.html', 'content-page__leelunchart')
-const PAGELOAD_NEW_MUSIC_CHART = new Page('', '')
-const PAGELOAD_TOPIC_GENRE = new Page('', '')
-const PAGELOAD_TOP_100 = new Page('', '')
+const PAGELOAD_NEW_MUSIC_CHART = new Page('/Views/Pages/pageload_newMusicChart.html', 'content-page__newMusicChart')
+const PAGELOAD_TOPIC_GENRE = new Page('/Views/Pages/pageload_topic&genre.html', 'content-page__topic-genre')
+const PAGELOAD_TOP_100 = new Page('/Views/Pages/', 'content-page__')
 
 
 const getPageFromIndentifyData = (indentifyData) => {
