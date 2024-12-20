@@ -15,7 +15,7 @@ const PageLoadList = [
 const setSideBarButtonFunction = () => {
     let sideBarButtonHtmlElementList = document.getElementsByClassName('js-sidebar__button')
     for (let button of sideBarButtonHtmlElementList) {
-        console.log(button)
+        // console.log(button)
         button.addEventListener('click', () => {
            PageLoader.setCurrentPage(
             PageLoader.getPageFromIndentifyData(button.getAttribute('data-page-indentify'))
