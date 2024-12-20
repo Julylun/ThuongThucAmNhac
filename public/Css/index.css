@@ -171,6 +171,18 @@
         color: transparent;
         -webkit-text-stroke: 1.5px #aaa6ae;
     }
+    .text-top{
+        background: linear-gradient(to right, #2b1e7f, #834997);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .text-outlineTop{
+        /* background: linear-gradient(to right, #2b1e7f, #834997); */
+        color: transparent;
+        /* -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent; */
+        -webkit-text-stroke: 3px #2b1e7f;
+    }
   }
 
 /* Width */
