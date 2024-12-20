@@ -174,8 +174,8 @@ myFavoriteSongs.forEach(song => {
                 <div class="_music-item group font-Nunito flex flex-row items-center w-full">
                     <img class="bg-[#AAA] size-20 mt-4 mb-4 rounded-lg md:mt-2 md:mb-2 md:size-14 md:rounded-sm" src="${song.image}" alt="${song.song}">
                     <div class="ml-3 flex flex-col">
-                        <p class="font-semibold text-sm xl:text-md lg:text-xl text-[#FFF] group-hover:text-[#b66dde] md:text-base">${song.song}</p>
-                        <p class="font-semibold text-sm text-[#888888] md:text-sm hover:underline">${song.artist}</p>
+                        <p class="font-semibold text-sm text-[#FFF] group-hover:text-[#b66dde] md:text-lg">${song.song}</p>
+                        <p class="font-semibold text-sm text-[#888888] md:text-sm hover:underline text-left">${song.artist}</p>
                     </div>
                 </div>
             </button>
