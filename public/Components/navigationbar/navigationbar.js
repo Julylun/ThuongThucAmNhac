@@ -11,6 +11,7 @@ const createJsLink = async (sideBarHtmlElement) => {
 }
 
 const createNavigationBar = async () => {
+    console.log('[FlowDebug](navigationbar.js) - createNavigationBar(): Start creating navigation bar')
     let sidebar_html = await File.getTextFromFile('/Views/navigationbar.html')
 
     const htmlParser = new DOMParser()
@@ -21,6 +22,8 @@ const createNavigationBar = async () => {
 
     mainSideBarHtmlElement.classList = tempSideBarHtmlElement.classList
     mainSideBarHtmlElement.innerHTML = tempSideBarHtmlElement.innerHTML
+
+    profileBoxEventAssign()
 
     // createJsLink(mainSideBarHtmlElement)
 
@@ -48,7 +51,7 @@ const profileBoxEventAssign = () => {
 
 const onStart = async () => {
     //    await createNavigationBar()
-    profileBoxEventAssign()
+    // profileBoxEventAssign()
 }
 
 

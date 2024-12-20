@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { AppController } from './app.controller';
@@ -13,24 +13,39 @@ import { AccessToken } from './modules/auth/accesstoken/accesstoken.entity';
 import { PlaylistModule } from './modules/playlist/playlist.module';
 import { Playlist } from './modules/playlist/playlist.entity';
 import { SongModule } from './modules/song/song.module';
-import { ArtistModule } from './modules/artist/artist.module';
-import { Song } from './modules/song/song.entity';
-import { Artist } from './modules/artist/artist.entity';
-import { AppDataSource } from './data-source';
+import { Song } from './modules/song/entity/song.entity';
+import { RefreshToken } from './modules/auth/refreshtoken/entity/refreshtoken.entity';
+import { AccesstokenModule } from './modules/auth/accesstoken/accesstoken.module';
+import { RefreshtokenModule } from './modules/auth/refreshtoken/refreshtoken.module';
+import { JwtMiddleWare } from './modules/auth/accesstoken/jwt.middleware';
+import { HashModule } from './modules/auth/hash/hash.module';
+import * as fs from 'fs';
+
+let configurationData = null;
+try {
+    configurationData = JSON.parse(fs.readFileSync('./src/config/system.config.json').toString());
+    console.log("[app.module][MY-CUSTOM-PRELOADING]: Loading configuration file...");
+    // console.log(configurationData)
+} catch (error) {
+    console.log("[app.module][MY-CUSTOM-PRELOADING]: An error occures when loading configuration file");
+    console.error(error);
+}
 
 @Module({
     imports: [
         TypeOrmModule.forRoot({
-            type: 'mysql',
-            host: 'localhost',
-            port: 3306,
-            username: 'root',
-            database: 'TTAN_DB',
-            entities: [Person, AccessToken, Playlist, Song, Artist],
+            type: configurationData.database.type,
+            host: configurationData.database.host,
+            port: configurationData.database.port,
+            username: configurationData.database.username,
+            password: configurationData.database.password,
+            database: configurationData.database.database,
+            entities: [Person, AccessToken, RefreshToken, Playlist, Song],
             migrations: ['src/migration/**/*.ts'],
             synchronize: false, // Đặt thành false để tránh đồng bộ hóa tự động khi chạy app
             logging: true,
         }),
+        // TypeOrmModule.forFeature([Person, Artist, AccessToken, RefreshToken, Playlist, Song]),
         // TypeOrmModule.forRoot(AppDataSource.options),
         ServeStaticModule.forRoot({
             rootPath: join(__dirname, '..', 'public'), // Đường dẫn đến thư mục `public`
@@ -41,10 +56,19 @@ import { AppDataSource } from './data-source';
         AuthModule,
         PlaylistModule,
         SongModule,
-        ArtistModule
+        RefreshtokenModule,
+        AccesstokenModule,
+        HashModule
     ],
     controllers: [AppController],
-    providers: [AppService],
+    providers: [AppService, JwtMiddleWare],
 })
-export class AppModule { }
+export class AppModule {
+
+    configure(consumer: MiddlewareConsumer) {
+        consumer
+            .apply(JwtMiddleWare)
+            .forRoutes('api/song/upload');
+    }
+}
 

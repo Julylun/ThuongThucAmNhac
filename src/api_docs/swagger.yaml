@@ -1,0 +1,56 @@
+openapi: 3.0.3
+info:
+  description: "This is a API documentation for Thuong Thuc Am Nhac back-end server. Please read this before using Thuong Thuc Am Nhac API from back-end developer :). Good luck!"
+  version: "1.0.0"
+  title: "Thuong Thuc Am Nhac"
+  termsOfService: "Will update later."
+  contact:
+  - email: "julylun.cat@gmail.com"
+  - email: "nguyenthily2005@gmail.com"
+  license:
+    name: "non-license"
+    url: "undefined"
+servers:
+- url: http://localhost:27075/api/v1
+- url: http://localhost:27075/api/v2
+tags:
+- name: user
+  description: Find out more
+  externalDocs:
+    description: Find out more about this method
+    url: http://localhost:27075/docs/api
+paths:
+  /user:
+    post:
+      tags:
+      - user
+      summary: Create a new user
+      description: Create a new user with new information including Id
+      operationId: create
+      requestBody:
+        description: Create a new user in the website
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './src/api_docs/schemas/User.yaml#/User'
+  #   consumes:
+  #   #Consume attributes are used to let fe know that this backend api will receive these data types
+  #   - "application/json"
+  #   produces:
+  #   #produce attributes are used to let fe know that this backend api will return theese data types
+  #   - "application/json"
+  #   parameters:
+  #   - in: "formdata"
+  #     name: "body"
+  #     description: ""
+  #     required: true
+  #     schema:
+  #       $ref: "./schemas/User.schema.yaml#/User"
+  #   responses:
+  #     404:
+  #       description: "Not found"
+
+  # /song:
+
+

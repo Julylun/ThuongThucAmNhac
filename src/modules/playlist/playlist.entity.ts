@@ -1,6 +1,6 @@
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Person } from "../person/person.entity";
-import { Song } from "../song/song.entity";
+import { Song } from "../song/entity/song.entity";
 
 
 @Entity('Playlist')
@@ -11,6 +11,8 @@ export class Playlist {
     @Column()
     playlistName: string
 
+
+    @JoinColumn({ name: 'userId' })
     @ManyToOne(() => Person, (person) => person.playlists, { onDelete: 'CASCADE' })
     person: Person
 
@@ -18,6 +20,7 @@ export class Playlist {
         cascade: true,
         onDelete: 'CASCADE'
     })
+
     @JoinTable({name: 'Playlist_Song'})
     songs: Song[]
 }

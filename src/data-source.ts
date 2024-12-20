@@ -2,7 +2,7 @@ import { DataSource } from "typeorm";
 import { AccessToken } from "./modules/auth/accesstoken/accesstoken.entity";
 import { Person } from "./modules/person/person.entity";
 import { Playlist } from "./modules/playlist/playlist.entity";
-import { Song } from "./modules/song/song.entity";
+import { Song } from "./modules/song/entity/song.entity";
 import { Artist } from "./modules/artist/artist.entity";
 
 export const AppDataSource = new DataSource({

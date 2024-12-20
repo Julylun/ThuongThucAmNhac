@@ -7,14 +7,23 @@ CREATE TABLE Person (
 	personId INT AUTO_INCREMENT PRIMARY KEY,
 	personName VARCHAR(255) NOT NULL,
   personEmail VARCHAR(255) UNIQUE NOT NULL,
+  personAvatar TEXT NULL,
   personPassword VARCHAR(255) NOT NULL,
-  personType INT NOT NULL
+  personType INT NOT NULL,
+  personStatus INT NOT NULL
 );
 
 CREATE TABLE AccessToken (
   tokenId INT AUTO_INCREMENT PRIMARY KEY,
   personId INT NOT NULL,
   jwtToken TEXT NOT NULL,
+  FOREIGN KEY(personId) REFERENCES Person(personId) ON DELETE CASCADE
+);
+
+CREATE TABLE RefreshToken (
+  tokenId INT AUTO_INCREMENT PRIMARY KEY,
+  personId INT NOT NULL,
+  jwtString TEXT NOT NULL,
   FOREIGN KEY(personId) REFERENCES Person(personId) ON DELETE CASCADE
 );
 
@@ -28,10 +37,13 @@ CREATE TABLE Playlist (
 CREATE TABLE Song (
 	songId INT AUTO_INCREMENT PRIMARY KEY,
     songName VARCHAR(255) NOT NULL,
+    songImage VARCHAR(255) NOT NULL,
     songPath VARCHAR(255) NOT NULL,
+    songDuration INT NOT NULL,
     songArtist INT NOT NULL,
     listenTimes INT DEFAULT 0,
     FOREIGN KEY (songArtist) REFERENCES Person(personId) ON DELETE CASCADE
+    -- FOREIGN KEY (songArtist) REFERENCES Person(personId) ON DELETE CASCADE
 );
 
 CREATE TABLE Playlist_Song (

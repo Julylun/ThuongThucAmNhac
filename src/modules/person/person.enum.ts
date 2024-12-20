@@ -3,3 +3,9 @@ export enum UserType {
     Artist,
     Admin
 }
+
+export enum UserStatus {
+    Alived,
+    Deactive,
+    Deleted
+}
