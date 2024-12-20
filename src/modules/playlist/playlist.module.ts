@@ -8,6 +8,7 @@ import { SongModule } from '../song/song.module';
 import { AccesstokenModule } from '../auth/accesstoken/accesstoken.module';
 import { AccesstokenService } from '../auth/accesstoken/accesstoken.service';
 import { PersonService } from '../person/person.service';
+import { SongService } from '../song/song.service';
 
 @Module({
   imports: [
@@ -17,7 +18,7 @@ import { PersonService } from '../person/person.service';
     forwardRef(() => AccesstokenModule)
   ],
   controllers: [PlaylistController],
-  providers: [PlaylistService, AccesstokenService, PersonService],
+  providers: [PlaylistService, AccesstokenService, PersonService, SongService],
   exports: [TypeOrmModule]
 })
 export class PlaylistModule { }

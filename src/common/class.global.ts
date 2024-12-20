@@ -23,10 +23,10 @@ export class ResponseData<D> {
         return this;
     }
 
-    static createResponse(error: Error | any): ResponseData<any> {
+    static createResponse(error: Error | string): ResponseData<any> {
         let resonseData = null;
-        new Logger("tml").debug(error)
-        switch (error.message) {
+        new Logger("tml").debug((error instanceof Error) ? error.message : error)
+        switch ((error instanceof Error) ? error.message : error) {
 
             //*Success cases
             case HttpMessage.OK: {
@@ -87,7 +87,6 @@ export class ResponseData<D> {
 
             //* Server error cases
             case HttpMessage.INTERNAL_SERVER_ERROR: {
-                 new Logger("tmp").debug(error.message)
                 resonseData = new ResponseData<any>({data: null, statusCode: HttpCode.INTERNAL_SERVER_ERROR, message: HttpMessage.INTERNAL_SERVER_ERROR});
                 break;
             }
@@ -100,7 +99,6 @@ export class ResponseData<D> {
                 break;
             }
             default: {
-                new Logger("tmp").debug("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
                 resonseData = new ResponseData<any>({data: null, statusCode: HttpCode.INTERNAL_SERVER_ERROR, message: HttpMessage.INTERNAL_SERVER_ERROR});
                 break;
             }

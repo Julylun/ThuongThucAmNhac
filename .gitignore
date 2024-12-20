@@ -3,6 +3,10 @@
 /node_modules
 /build
 
+
+# uploaded resources
+/uploads
+
 # complied css
 /public/Css/index-tailwind.css
 

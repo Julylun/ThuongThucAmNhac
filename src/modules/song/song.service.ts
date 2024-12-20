@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Song } from './entity/song.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { Person } from '../person/person.entity';
 import * as MusicMetadata from 'music-metadata';
 
@@ -59,6 +59,34 @@ export class SongService {
         catch (e) {
             this.logger.error(e.message);
             return null;
+        }
+    }
+
+    async getSongByIdList(songIdList: number[]): Promise<Song[]> {
+        try {
+            let songs = await this.songRepository.findBy({songId: In(songIdList)});
+            return songs;
+        } catch (e) {
+            this.logger.error('[getSongByIdList]: ' + e.message);
+            return null;
+        }
+    }
+
+    async isSongExist(songId: number): Promise<boolean> {
+        try {
+            return (await this.songRepository.existsBy({songId: songId}))
+        } catch (e) {
+            this.logger.error(e)
+            return false
+        }
+    }
+
+    async isSongsExist(songIdList: number[]): Promise<boolean> {
+        try {
+            return (await this.songRepository.existsBy({songId: In(songIdList)}))
+        } catch (e) {
+            this.logger.error(e)
+            return false;
         }
     }
 }

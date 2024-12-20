@@ -57,11 +57,11 @@ export class AccesstokenService {
     decodeToUserId(jwtToken: string): number {
         try {
             let decodedToken = this.jwtService.verify(jwtToken)
-            this.logger.debug("Decoded token: " + decodedToken)
+            this.logger.debug("Decoded token: ",decodedToken)
             if (decodedToken == null || decodedToken.sub == null) return -404
             return decodedToken.sub
         } catch (e) {
-            this.logger.error(e.message)
+            this.logger.error(e)
             if(e.message == "The jwtToken is invalid") return -404
             return -500
         }
