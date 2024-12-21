@@ -171,7 +171,7 @@ export class SongController {
                 }
             },
             limits: {
-                fileSize: 1024 * 1024 * 10,  // limit 10mb each file
+                fileSize: 1024 * 1024 * 20,  // limit 10mb each file
             }
         }),
     )
