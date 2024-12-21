@@ -1,4 +1,5 @@
 import * as File from '../Features/common/file.js'
+import { setActivedSidebarButton } from '../Js/sidebar/sidebarUtils.js'
 
 export {
     Page,
@@ -32,7 +33,8 @@ class Page {
         let tempScript = doc.getElementsByClassName('page-script')
         console.log(tempScript)
 
-        // while (true) {
+
+        // Remove all script tag in current page if it is page-script
         console.log(document.getElementsByClassName('page-script').length)
         while (document.getElementsByClassName('page-script').length != 0) {
             for (let script of document.getElementsByClassName('page-script')) {
@@ -42,8 +44,9 @@ class Page {
             }
         }
 
-        let contentParent = document.getElementById('js__content')
 
+        // Remove all children in js__content
+        let contentParent = document.getElementById('js__content')
         while (contentParent.firstChild) { //Remove all children in js__content
             contentParent.removeChild(contentParent.firstChild);
         }
@@ -53,10 +56,11 @@ class Page {
 
 
 
-
+        //If tmepscript is not null then append it to body
         if (tempScript) {
             for (let _tempScript of tempScript) {
                 let script = document.createElement('script')
+
                 let tmpId = (!_tempScript.classList.contains('no-reload')) ? '?timesamp=' + Date.now() : ''
                 script.src = _tempScript.src + tmpId
                 script.type = _tempScript.type
@@ -69,12 +73,12 @@ class Page {
     }
 }
 
-const PAGELOAD_LIBRARY = new Page('', '')
+const PAGELOAD_LIBRARY = new Page('/Views/Pages/pageload_library.html', 'content-page__library')
 const PAGELOAD_EXPLORE = new Page('/Views/Pages/pageload_explore.html', 'content-page__explore')
 const PAGELOAD_LEELUNCHART = new Page('/Views/Pages/pageload_leelunchart.html', 'content-page__leelunchart')
 const PAGELOAD_NEW_MUSIC_CHART = new Page('/Views/Pages/pageload_newMusicChart.html', 'content-page__newMusicChart')
 const PAGELOAD_TOPIC_GENRE = new Page('/Views/Pages/pageload_topic&genre.html', 'content-page__topic-genre')
-const PAGELOAD_TOP_100 = new Page('/Views/Pages/', 'content-page__')
+const PAGELOAD_TOP_100 = new Page('/Views/Pages/pageload_top100.html', 'content-page__top100')
 
 
 const getPageFromIndentifyData = (indentifyData) => {
@@ -88,12 +92,26 @@ const getPageFromIndentifyData = (indentifyData) => {
     }
 }
 
+const pageToIndentifyData = (page) => {
+    switch (page) {
+        case PAGELOAD_LIBRARY: return 'library'
+        case PAGELOAD_EXPLORE: return 'explore'
+        case PAGELOAD_LEELUNCHART: return 'leelunchart'
+        case PAGELOAD_NEW_MUSIC_CHART: return 'new_music_chart'
+        case PAGELOAD_TOPIC_GENRE: return 'topic_genre'
+        case PAGELOAD_TOP_100: return 'top100'
+    }
+}
+
 const pageLoad = (page) => {
     page.setTag()
+    setActivedSidebarButton(pageToIndentifyData(page))
+
 }
 
 const reloadContent = () => {
-    pageLoad(global_currentPage)
+    pageLoad(global_currentPage);
+    setActivedSidebarButton(pageToIndentifyData(global_currentPage))
 }
 
 const setCurrentPage = (page) => {

@@ -1,49 +1,19 @@
-import * as Svg from '../../Components/svg.js'
-import * as PageLoader from '../../Components/loader.js'
+import * as Svg from '../../Components/common/svg.js';
+import * as SideBarUltis from './sidebarUtils.js';
 
-
-const PageLoadList = [
-    PageLoader.PAGELOAD_EXPLORE,
-    PageLoader.PAGELOAD_EXPLORE,
-    PageLoader.PAGELOAD_EXPLORE,
-    PageLoader.PAGELOAD_EXPLORE,
-    PageLoader.PAGELOAD_EXPLORE,
-    PageLoader.PAGELOAD_EXPLORE,
-    PageLoader.PAGELOAD_EXPLORE,
-]
-
-const setSideBarButtonFunction = () => {
-    let sideBarButtonHtmlElementList = document.getElementsByClassName('js-sidebar__button')
-    for (let button of sideBarButtonHtmlElementList) {
-        // console.log(button)
-        button.addEventListener('click', () => {
-           PageLoader.setCurrentPage(
-            PageLoader.getPageFromIndentifyData(button.getAttribute('data-page-indentify'))
-           )
-           PageLoader.reloadContent()
-        })
-    }
-}
-
+/**
+ * onStart is the main function of this javascript file. That means onStart will be called first.
+ */
 const onStart = () => {
-    console.log('[FlowDebug](sidebar.js - onStart): Start sidebar')
+    //Set event to create playlist button
+    SideBarUltis.setHandleEventForCreatePlaylistButton();
 
-    Svg.changeElementsColor('js-sidebar__icon-button', '#C6C5C7')
-    console.log('[FlowDebug](sidebar.js - onStart): Changed SVG color')
+    //Change color of sidebar button
+    Svg.changeElementsColor('js-sidebar__icon-button', '#C6C5C7');
 
-    console.log('[FlowDebug](sidebar.js - onStart): Setting side bar button function...')
-    setSideBarButtonFunction()
+    //Set function for sidebar button
+    SideBarUltis.setSideBarButtonFunction();
+};
 
-}
 
-document.getElementById('createPlaylist').addEventListener('click', function (e) {
-    e.preventDefault();
-    document.getElementById('form_addPlaylist').classList.remove('hidden');
-});
-
-document.getElementById('close_createPlaylist').addEventListener('click', function () {
-    document.getElementById('form_addPlaylist').classList.add('hidden');
-});
-
-onStart()
-
+onStart();

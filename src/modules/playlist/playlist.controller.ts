@@ -18,6 +18,8 @@ import { InternalServerErrorExampleDto } from 'src/api_docs/exampleDto/internals
 import { AddSongToPlaylistDto } from './dto/addSongToPlaylist.dto';
 import { SongService } from '../song/song.service';
 import { OkResponsePlaylistsDto } from 'src/api_docs/exampleDto/playlist/ok-responsePlaylists.dto';
+import { PlaylistType } from './playlist.enum';
+import { OkResponsePlaylistSongDto } from 'src/api_docs/exampleDto/playlist/ok-responsePlaylistsSong.dto';
 
 @Controller({ path: 'playlist', version: '1' })
 export class PlaylistController {
@@ -30,9 +32,8 @@ export class PlaylistController {
     ) { }
 
 
-    //TODO: [Test]: Test this method 
-    @ApiOperation({ summary: '[Get playlist]: Get playlists by using Access Token <<Require: Access Token>>' })
-    @ApiResponse({ status: HttpCode.OK, description: '[200 - OK]: Everything is fine.', type: OkResponsePlaylistsDto})
+    @ApiOperation({ summary: '[Get playlist]: Get playlists by using Access Token <<Require: Access Token>>', description: 'This method will return a list of playlist including below attributes:\n- playlistId: id \n- playlistName: playlist name \n- playlistType: type of playlist [0: user playlist || 1: favourite playlist].'})
+    @ApiResponse({ status: HttpCode.OK, description: '[200 - OK]: Everything is fine.', type: OkResponsePlaylistsDto })
     @ApiResponse({ status: HttpCode.UNAUTHORIZED, description: '[401 - Unauthorized]: Missing access token or it is expired/wrong/invalid.', type: UnauthorizedExampleDto })
     @ApiResponse({ status: HttpCode.INTERNAL_SERVER_ERROR, description: '[500 - Internal server error]: An unknown error occured in server.', type: InternalServerErrorExampleDto })
     @ApiBearerAuth('access-token')
@@ -67,16 +68,15 @@ export class PlaylistController {
         }
     }
 
-    //TODO: Create method allowing users get their songs form their created playlists
     @ApiOperation({ summary: '[Get songs from playlist]: Get songs from a playlist by using playlist id <<Require: Access Token>>' })
-    @ApiResponse({ status: HttpCode.OK, description: '[200 - OK]: Everything is fine.', type: OkResponsePlaylistsDto})
+    @ApiResponse({ status: HttpCode.OK, description: '[200 - OK]: Everything is fine.', type: OkResponsePlaylistSongDto })
     @ApiResponse({ status: HttpCode.BAD_REQUEST, description: '[400 - Bad request]: Missing params or playlistId is invalid.', type: UnauthorizedExampleDto })
     @ApiResponse({ status: HttpCode.UNAUTHORIZED, description: '[401 - Unauthorized]: Missing access token or it is expired/wrong/invalid | User doesnt exist or dont have permission to do this action.', type: UnauthorizedExampleDto })
     @ApiResponse({ status: HttpCode.FORBIDDEN, description: '[403 - Forbidden]: User doesnt have permission to get songs from this playlist (Maybe dont own that playlist)', type: UnauthorizedExampleDto })
     @ApiResponse({ status: HttpCode.INTERNAL_SERVER_ERROR, description: '[500 - Internal server error]: An unknown error occured in server.', type: InternalServerErrorExampleDto })
     @ApiBearerAuth('access-token')
     @Get('get-songs/:playlistId')
-    async getSongFromPlaylist(@Param('playlistId') playlistId: number ,@Req() request: Request, @Res() response: Response) {
+    async getSongFromPlaylist(@Param('playlistId') playlistId: number, @Req() request: Request, @Res() response: Response) {
         let responseData: ResponseData<any> = null;
         this.logger.log('[getSongFromPlaylist]: Start a request');
         this.logger.log('[getSongFromPlaylist]: PlaylistId = ', playlistId);
@@ -91,11 +91,12 @@ export class PlaylistController {
 
             if (!(await this.playlistService.isOwnedBy(playlistId, userId))) throw new Error(HttpMessage.FORBIDDEN);
 
-            let playlist = await this.playlistService.getPlaylist({playlistId: playlistId});
+            let playlist = await this.playlistService.getPlaylist({ playlistId: playlistId });
             if (!playlist) throw new Error(HttpMessage.INTERNAL_SERVER_ERROR);
-
-            let songs = playlist.songs;
-            responseData = new ResponseData<any>({ data: songs, statusCode: HttpCode.OK, message: HttpMessage.OK });
+            
+            this.logger.log('[getSongFromPlaylist]: Playlist = ');
+            console.log(playlist);
+            responseData = new ResponseData<any>({ data: playlist, statusCode: HttpCode.OK, message: HttpMessage.OK });
         } catch (error) {
             this.logger.error('[getSongFromPlaylist]: An error occurs');
             this.logger.error(error);
@@ -159,7 +160,7 @@ export class PlaylistController {
             let userInstance = await this.personService.getPerson(userId);
             if (!userInstance) throw new Error(HttpMessage.UNAUTHORIZED);
 
-            this.playlistService.createPlayList(createPlaylistDto.playlistName, userInstance)
+            this.playlistService.createPlayList(createPlaylistDto.playlistName, userInstance, PlaylistType.USER)
             responseData = new ResponseData<any>({ data: null, statusCode: HttpCode.OK, message: HttpMessage.OK });
         } catch (error) {
 
@@ -174,14 +175,13 @@ export class PlaylistController {
         }
     }
 
-    //TODO: [Test]: Test this method (waiting for music)
-    @ApiOperation({ summary: '[Add songs to playlist]<WARNING: METHOD IS STILL TESTING>: Allow user add songs to their created playlist by using Access Token and form data <<Require: Access Token>>' })
+    @ApiOperation({ summary: '[Add songs to playlist]: Allow user add/remove songs to their created playlist by using Access Token and form data <<Require: Access Token>>\n' })
     @ApiResponse({ status: HttpCode.OK, description: '[200 - OK]: Everything is fine.', type: OkExampleDto })
     @ApiResponse({ status: HttpCode.BAD_REQUEST, description: '[400 - Bad request]: Missing params or songId/userId is invalid.', type: UnauthorizedExampleDto })
     @ApiResponse({ status: HttpCode.UNAUTHORIZED, description: '[401 - Unauthorized]: Missing access token or it is expired/wrong/invalid | User doesnt exist or dont have permission to do this action.', type: UnauthorizedExampleDto })
     @ApiResponse({ status: HttpCode.FORBIDDEN, description: '[403 - Forbidden]: User doesnt have permission to add songs to this playlist (Maybe dont own that playlist)', type: UnauthorizedExampleDto })
     @ApiResponse({ status: HttpCode.INTERNAL_SERVER_ERROR, description: '[500 - Internal server error]: An unknown error occured in server.', type: InternalServerErrorExampleDto })
-    @ApiBody({ description: 'Form data requires:\n+ playlistId: int\n+ songsId: int[]', type: AddSongToPlaylistDto })
+    @ApiBody({ description: 'Form data requires:\n+ playlistId: int\n+ songsId: int[]\n+ methodType: string (OPTIONAL) - ["add"/null/other: Add songs to playlist || "remove": Remove songs from playlist]\n\nNote 1: If songs are duplicated, they will not be added to playlist.\n\nNote 2: If you dont need to use methodType, remote that parameter from your form data.', type: AddSongToPlaylistDto })
     @ApiBearerAuth('access-token')
     @Put('add-songs')
     async addSongsToPlaylist(@Body() addSongToPlayListDto: AddSongToPlaylistDto, @Req() request: Request, @Res() response: Response) {
@@ -191,6 +191,7 @@ export class PlaylistController {
 
         let responseData: ResponseData<any> = null;
         try {
+            this.logger.debug('[addSongsToPlaylist]: checkpoint 1');
             let userAccessToken = headerToToken(request);
             if (!userAccessToken) throw new Error(HttpMessage.UNAUTHORIZED);
 
@@ -200,6 +201,7 @@ export class PlaylistController {
             let userInstance = await this.personService.getPerson(userId);
             if (!userInstance) throw new Error(HttpMessage.UNAUTHORIZED);
 
+            this.logger.debug('[addSongsToPlaylist]: checkpoint 2');
             if (!(await this.playlistService.isOwnedBy(addSongToPlayListDto.playlistId, userId))) throw new Error(HttpMessage.FORBIDDEN);
 
             addSongToPlayListDto.songsId.forEach(songId => {
@@ -211,6 +213,9 @@ export class PlaylistController {
 
             if (!(await this.playlistService.isPlaylistExist(addSongToPlayListDto.playlistId))) throw new Error(HttpMessage.BAD_REQUEST);
 
+            this.logger.debug('[addSongsToPlaylist]: checkpoint 3');
+            if (addSongToPlayListDto.methodType == 'remove')
+                this.playlistService.removeSongsToPlaylist(addSongToPlayListDto.playlistId, songList);
             this.playlistService.addSongsToPlaylist(addSongToPlayListDto.playlistId, songList);
 
             responseData = new ResponseData<any>({ data: null, statusCode: HttpCode.OK, message: HttpMessage.OK });
@@ -234,12 +239,10 @@ export class PlaylistController {
                     responseData = ResponseData.createResponse(HttpMessage.INTERNAL_SERVER_ERROR);
                 }
             }
+        } finally {
+            sendResponseData(response, responseData);
         }
     }
-
-    //TODO: Create method allowing users remove songs from their created playlist
-    // @Put()
-    //removeSongsFromPlaylist(){}
 
     @ApiOperation({
         summary: '[Modify playlist]: Modifying playlist by using Access Token and from data <<Require: Access Token>>'

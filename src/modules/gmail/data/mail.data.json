@@ -1,0 +1,8 @@
+{
+    "register": {
+        "from": "Thuong Thuc Am Nhac - LeeLun",
+        "subject": "[Confim Email]: You have registered a new Thuong Thuc Am Nhac account.",
+        "text": "# Please verify your email 😀\nTo use Thuong Thuc Am Nhac, copy the secure code and fill it in your register page. This helps keep your account secure.\nYou're receiving this email because you have an account in Thuong Thuc Am Nhac. If you are not sure why you're receiving this, please don't share this code to any person. Your code is: ",
+        "html": "register"
+    }
+}
