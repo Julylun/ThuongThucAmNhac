@@ -18,4 +18,12 @@ export class AddSongToPlaylistDto {
     @IsArray()
     @IsNumber({}, { each: true })
     songsId: number[];
+
+    @IsString()
+    @ApiProperty({
+        description: "Method type",
+        example: "add"
+    })
+    methodType: string;
+
 }

@@ -6,5 +6,10 @@
         "username": "root",
         "password": null,
         "database": "TTAN_DB"
+    },
+    "mailer": {
+        "host": "smtp.gmail.com",
+        "username": "ttan.lunlee@gmail.com",
+        "password": "vmpe qsei xncw olwe"
     }
 }

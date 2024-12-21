@@ -29,6 +29,6 @@ export class Song {
     @JoinColumn({ name: 'songArtist' })
     songArtist: Person;
 
-    @ManyToMany(() => Playlist, (playlist) => playlist.songs)
-    playlists: Playlist[]
+    @ManyToMany(() => Playlist, (playlist) => playlist.song)
+    playlist: Playlist[]
 }

@@ -46,8 +46,8 @@ export class LoginService {
             this.logger.debug("Login complete");
             return new ResponseData({
                 data: { accessToken: accessTokenObj.jwtToken, refreshToken: refreshTokenObj.jwtString, },
-                statusCode: HttpCode.ACCEPTED,
-                message: HttpMessage.ACCEPTED
+                statusCode: HttpCode.OK,
+                message: HttpMessage.OK
             });
 
         } catch (e) {

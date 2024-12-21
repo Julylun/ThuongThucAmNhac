@@ -1,4 +1,4 @@
-import { ApiService } from './apiService.js'
+import { ApiService } from '../api/apiService.js';
 
 const fetchGetUser = async () => {
     const apiBase = ApiService.getApiBase() + 'user'

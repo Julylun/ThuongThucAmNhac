@@ -11,7 +11,7 @@ const createJsLink = async (sideBarHtmlElement) => {
 }
 
 const createNavigationBar = async () => {
-    console.log('[FlowDebug](navigationbar.js) - createNavigationBar(): Start creating navigation bar')
+    // console.log('[FlowDebug](navigationbar.js) - createNavigationBar(): Start creating navigation bar')
     let sidebar_html = await File.getTextFromFile('/Views/navigationbar.html')
 
     const htmlParser = new DOMParser()

@@ -6,51 +6,73 @@ export class OkResponsePlaylistsDto {
         example: [
             {
                 "playlistId": 1,
-                "playlistName": "Yeu la khong buong bo"
+                "playlistName": "Yeu la khong buong bo",
+                "playlistType": 0
             },
             {
                 "playlistId": 2,
-                "playlistName": "nhac cua Lun"
+                "playlistName": "nhac cua Lun",
+                "playlistType": 0
             },
             {
                 "playlistId": 3,
-                "playlistName": "Nhac cua Ly"
+                "playlistName": "Nhac cua Ly",
+                "playlistType": 0
+
             },
             {
                 "playlistId": 4,
-                "playlistName": "Nhac cua chau Lun"
+                "playlistName": "Nhac cua chau Lun",
+                "playlistType": 0
+
             },
             {
                 "playlistId": 5,
-                "playlistName": "Nhac cua chau Ly"
+                "playlistName": "Nhac cua chau Ly",
+                "playlistType": 0
+
             },
             {
                 "playlistId": 6,
-                "playlistName": "Nhac Jack"
+                "playlistName": "Nhac Jack",
+                "playlistType": 0
+
             },
             {
                 "playlistId": 7,
-                "playlistName": "100 bai hat Thien Ly Oi"
+                "playlistName": "100 bai hat Thien Ly Oi",
+                "playlistType": 0
+
             },
             {
                 "playlistId": 8,
-                "playlistName": "Buon vai"
+                "playlistName": "Buon vai",
+                "playlistType": 0
+
             },
             {
                 "playlistId": 9,
-                "playlistName": "Uoc gi"
+                "playlistName": "Uoc gi",
+                "playlistType": 0
+
             },
             {
                 "playlistId": 10,
-                "playlistName": "Toi duoc"
+                "playlistName": "Toi duoc",
+                "playlistType": 0
+
             },
             {
                 "playlistId": 11,
-                "playlistName": "Thi tot biet may"
+                "playlistName": "Thi tot biet may",
+                "playlistType": 0
+
             },
             {
                 "playlistId": 12,
-                "playlistName": "Do buon"
+                "playlistName": "Do buon",
+                "playlistType": 0
+
             }
         ],
         description: 'Data is returned by server'

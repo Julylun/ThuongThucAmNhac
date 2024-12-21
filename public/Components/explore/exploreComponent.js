@@ -2,7 +2,8 @@ import { createElement } from "../common/component.js";
 
 export {
     createMusicItem,
-    createMusicSector
+    createMusicSector,
+    renderMusicItem
 }
 
 const createMusicSector = (sectorName, sectorId) => {
@@ -46,4 +47,16 @@ const createMusicItem = (songName, songAuthor, imageSource, parentElement) => {
 
     // <button class="w-full"> <div class="_music-item group font-Nunito flex flex-row items-center w-full"> <img class="bg-[#AAA] size-20 mt-4 mb-4 rounded-lg group-hover:size-24 group-hover:mt-2 group-hover:mb-2 md:size-14 md:group-hover:size-16 md:mt-3 md:mb-3 md:group-hover:mt-2 md:group-hover:mb-2 md:rounded-sm " src="#"> <div class="ml-3 flex flex-col"> <p class="font-semibold text-xl text-[#FFF] group-hover:text-[#FDC018] md:text-base"> Ngua o</p> <p class="font-semibold text-sm text-[#888888] group-hover:text-[#D3AA71] md:text-sm"> JulyLun</p> </div> </div> </button>
 
+}
+
+
+const renderMusicItem = (musicItemList, sectorHtmlInstance) => {
+    for (let musicItem of musicItemList) {
+        createMusicItem(
+            musicItem.songName,
+            musicItem.songArtist.artistName,
+            window.origin + musicItem.songImage.slice(6, musicItem.songImage.length),
+            sectorHtmlInstance
+        );
+    }
 }

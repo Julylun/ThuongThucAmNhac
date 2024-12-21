@@ -1,4 +1,5 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { AppController } from './app.controller';
@@ -20,6 +21,10 @@ import { RefreshtokenModule } from './modules/auth/refreshtoken/refreshtoken.mod
 import { JwtMiddleWare } from './modules/auth/accesstoken/jwt.middleware';
 import { HashModule } from './modules/auth/hash/hash.module';
 import * as fs from 'fs';
+import { GmailController } from './modules/gmail/gmail.controller';
+import { GmailService } from './modules/gmail/gmail.service';
+import { GmailModule } from './modules/gmail/gmail.module';
+import { MailerModule } from '@nestjs-modules/mailer';
 
 let configurationData = null;
 try {
@@ -45,6 +50,7 @@ try {
             synchronize: false, // Đặt thành false để tránh đồng bộ hóa tự động khi chạy app
             logging: true,
         }),
+
         // TypeOrmModule.forFeature([Person, Artist, AccessToken, RefreshToken, Playlist, Song]),
         // TypeOrmModule.forRoot(AppDataSource.options),
         ServeStaticModule.forRoot({
@@ -58,7 +64,8 @@ try {
         SongModule,
         RefreshtokenModule,
         AccesstokenModule,
-        HashModule
+        HashModule,
+        GmailModule,
     ],
     controllers: [AppController],
     providers: [AppService, JwtMiddleWare],
