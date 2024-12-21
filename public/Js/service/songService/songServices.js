@@ -5,12 +5,13 @@ import ApiService from '../../api/apiService.js';
 const getSuggestionSong = async (type) => {
   let apiBase = (await ApiService.getApiBase()) + 'song/suggest' + (type ? `?type=${type}` : '');
 
-  let responseData = fetch(apiBase, { method: 'GET' })
+  let responseData = await fetch(apiBase, { method: 'GET' })
     .then((response) => {
       console.log(response);
       return response.json();
     })
     .then((result) => {
+      console.log(result)
       return result;
     })
     .catch((error) => {
@@ -18,5 +19,5 @@ const getSuggestionSong = async (type) => {
       return null;
     });
 
-  return responseData;
+  return await responseData;
 };

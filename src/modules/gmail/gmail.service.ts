@@ -1,5 +1,6 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable, Logger } from '@nestjs/common';
+import { _Number, JulyDom } from '../../common/function.global';
 import * as fs from 'fs';
 
 
@@ -15,14 +16,7 @@ export class GmailService {
     private readonly logger: Logger = new Logger(GmailService.name);
 
     public static MAIL_TYPE_REGISTER = 0;
-    public static MAIL_TYPE_FORGET_PASSWORD = 1;
-
-    generateRandomNumberByDigits(digits: 4 | 5 | 6): number {
-        const min: number = Math.pow(10, digits - 1); 
-        const max: number = Math.pow(10, digits) - 1; 
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-   // Sử dụng hàm
+    public static MAIL_TYPE_FORGET_PASSWORD = 1
 
 
 
@@ -74,13 +68,14 @@ export class GmailService {
 
             let htmlText: string = this.getHtmlMail(mailDataObject.html);
             let text: string = mailDataObject.text;
-            let htmlElement = this.stringToHtml(htmlText);
+            // let htmlElement = this.stringToHtml(htmlText);
+            let htmlElement = JulyDom.toHtmlElement(htmlText);
 
             if (mailType == GmailService.MAIL_TYPE_REGISTER) {
-                let secureCode = this.generateRandomNumberByDigits(4);
-                htmlElement.window.document.getElementById('secure-code').innerHTML = secureCode +''
-                text+= secureCode;
-                htmlText = htmlElement.window.document.documentElement.outerHTML;
+                let secureCode = _Number.generateRandomNumberByDigits(4)
+                htmlElement.getElementById('secure-code').innerHTML = secureCode + ''
+                text += secureCode;
+                htmlText = htmlElement.documentElement.outerHTML;
                 // console.log(typeof(htmlElement))
                 // htmlElement.querySelector('#secure-code').textContent = '1234'
             }
