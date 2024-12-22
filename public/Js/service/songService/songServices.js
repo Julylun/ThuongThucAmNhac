@@ -7,11 +7,11 @@ const getSuggestionSong = async (type) => {
 
   let responseData = await fetch(apiBase, { method: 'GET' })
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       return response.json();
     })
     .then((result) => {
-      console.log(result)
+      // console.log(result)
       return result;
     })
     .catch((error) => {

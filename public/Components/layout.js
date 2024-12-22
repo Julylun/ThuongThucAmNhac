@@ -11,9 +11,9 @@ const defaultConfig = async () => {
 
     NavigationBar.createNavigationBar()
     SideBar.createSideBar()
-    ControlBar.createControlBar()
+    await ControlBar.createControlBar()
     // console.log('[FlowDebug](layout.js): set default configuration (Create navigation bar and side bar) done.')
     // console.log(document.getElementById('control-bar'))
 }
 
-defaultConfig()
+await defaultConfig()

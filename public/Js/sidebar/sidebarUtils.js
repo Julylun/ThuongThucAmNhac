@@ -46,7 +46,7 @@ const setActivedSidebarButton = (id_name) => {
 
     // console.log('[sidebarUtils.js]: setActivedSidebarButton is called..')
     let sideBarButtonHtmlElementList = document.getElementsByClassName('js-sidebar__button')
-    console.log(sideBarButtonHtmlElementList)
+    // console.log(sideBarButtonHtmlElementList)
     for (let index = 0; index < sideBarButtonHtmlElementList.length; index++) {
         let sidebarButton = sideBarButtonHtmlElementList[index];
         let sideBarButtonHeightLine = sidebarButton.getElementsByClassName('js-sidebar__height-line')[0];

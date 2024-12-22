@@ -31,7 +31,11 @@ class MusicPlayer {
   }
 
 
-
+  static removeAllSong() {
+    this.nextQueue = [];
+    this.previousQueue = [];
+    this.currentSong = null;
+  }
 
 
 
@@ -41,11 +45,7 @@ class MusicPlayer {
 
 
   addSongToQueue(inputSong) {
-    if (song.isArray())
-      for (let _song of inputSong) {
-        this.nextQueue.push(song);
-      }
-      else this.nextQueue.push(inputSong);
+    this.nextQueue.push(inputSong)
   }
 
   setCurrentTime(time) {
@@ -57,7 +57,8 @@ class MusicPlayer {
       this.previousQueue.push(this.currentSong);
       this.currentSong = this.nextQueue.shift();
       this.audio.src = MusicPlayer.songIdToHref(this.currentSong.songId);
-      this.load();
+      console.log('loadingg')
+      this.audio.load();
       return
     }
   }

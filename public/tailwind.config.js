@@ -11,6 +11,9 @@ module.exports = {
       'side_bar_background':'#231B2E'
     },
     extend: {
+      dropShadow: {
+        'pink-sm': '0px 3px 7px rgba(166, 54, 110, 0.15)'
+      },
       height: {
         '0.1':'0.01rem',
         '0.2':'0.025rem', 

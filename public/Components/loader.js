@@ -9,6 +9,7 @@ export {
     setCurrentPage,
     getPageFromIndentifyData,
     global_currentPage,
+    loadPosition
 
 }
 
@@ -109,9 +110,45 @@ const pageLoad = (page) => {
 
 }
 
+const loadPosition = () => {
+    let pathName = window.location.pathname;
+    switch (pathName) {
+        case '/explore': {
+            setCurrentPage(PAGELOAD_EXPLORE);
+            break;
+        }
+        case '/library': {
+            setCurrentPage(PAGELOAD_LIBRARY);
+            break;
+        } case '/leelunchart': {
+            setCurrentPage(PAGELOAD_LEELUNCHART);
+            break;
+        } case '/new_music_chart': {
+            setCurrentPage(PAGELOAD_NEW_MUSIC_CHART);
+            break;
+        }
+        case '/topic_genre': {
+            setCurrentPage(PAGELOAD_TOPIC_GENRE);
+            break;
+        }
+        case '/top100': {
+            setCurrentPage(PAGELOAD_TOP_100);
+            break;
+        }
+        case '/administrator': {
+            window.location.href = '/Admin/index.admin.html'
+            break;
+        }
+    }
+}
+
+const changePage = () => {
+    document.removeChild();
+}
 const reloadContent = () => {
     pageLoad(global_currentPage);
     setActivedSidebarButton(pageToIndentifyData(global_currentPage))
+    window.history.pushState(null, null, '/' + pageToIndentifyData(global_currentPage));
 }
 
 const setCurrentPage = (page) => {

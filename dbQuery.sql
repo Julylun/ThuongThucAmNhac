@@ -55,6 +55,8 @@ CREATE TABLE Playlist_Song (
     FOREIGN KEY (songId) REFERENCES Song (songId) ON DELETE CASCADE
 );
 
+
+--Test data
 INSERT INTO Person (personName, personEmail, personPassword, personType, personStatus) 
 VALUES ('admin', 'admin@example.july','$2a$10$m5lUV2PxFJ/mqMgiavH1VuntpwUJrUG1SwIOXwadGYchpf/jWbcnG',1,0);
 

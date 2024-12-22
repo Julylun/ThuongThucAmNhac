@@ -41,7 +41,7 @@ class ApiService {
           '/api/' +
           configData.api_version +
           '/';
-          // console.log('[apiService.js]<ApiService - getApiBase()>: Api base: ' + this.apiBaseInstance);
+          console.log('[apiService.js]<ApiService - getApiBase()>: Api base: ' + this.apiBaseInstance);
       } catch (error) {
         console.error('[apiService.js]<ApiService - getApiBase()>: Some errors occur when  getting api from configuration file, check error below this line');
         console.error(error);
@@ -49,7 +49,7 @@ class ApiService {
       }
     }
     // console.log('[apiService.js]<ApiService - getApiBase()>: Getting api finished.');
-    console.log('[apiService.js]<ApiService - getApiBase()>: Api base: ' + this.apiBaseInstance);
+    // console.log('[apiService.js]<ApiService - getApiBase()>: Api base: ' + this.apiBaseInstance);
     return this.apiBaseInstance
   };
 }

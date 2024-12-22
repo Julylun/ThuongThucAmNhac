@@ -25,6 +25,7 @@ import { GmailController } from './modules/gmail/gmail.controller';
 import { GmailService } from './modules/gmail/gmail.service';
 import { GmailModule } from './modules/gmail/gmail.module';
 import { MailerModule } from '@nestjs-modules/mailer';
+import { SearchModule } from './modules/search/search.module';
 
 let configurationData = null;
 try {
@@ -66,6 +67,7 @@ try {
         AccesstokenModule,
         HashModule,
         GmailModule,
+        SearchModule,
     ],
     controllers: [AppController],
     providers: [AppService, JwtMiddleWare],

@@ -2,7 +2,8 @@ import * as File from  '../../Features/common/file.js'
 import MusicPlayer from '../../Features/musicplayer/musicplayer.js'
 import { linkControlBarToMusicPlayer } from '../../Js/controlBar/controlBar.js'
 export {
-   createControlBar 
+   createControlBar,
+   updateControlBarInformation
 }
 
 const musicPlayer = MusicPlayer.getInstance()
@@ -31,6 +32,13 @@ const createControlBar = async () => {
     
     linkControlBarToMusicPlayer(musicPlayer);
     // console.log(sidebar_html)
+}
+
+const updateControlBarInformation = (songName, songImagePath, songAuthorName) => {
+    document.getElementById('control-song-name').innerHTML = songName;
+    document.getElementById('control-song-image').src = songImagePath;
+    document.getElementById('control-song-author').innerHTML = songAuthorName;
+    // document.
 }
 
 
