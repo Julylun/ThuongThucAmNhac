@@ -15,6 +15,7 @@ export class PersonService {
     ) { }
     private logger = new Logger(PersonService.name)
 
+
     async createPerson(personData: Partial<Person>): Promise<Person> {
         try {
             this.logger.debug("Creating person");
@@ -38,7 +39,7 @@ export class PersonService {
      */
     personToPersonDto(person: Person, dtoName: string): PersonResponseDto | CreatePersonDto | UpdatePersonDto {
         try {
-            if(!person) throw new Error("Person is null");
+            if (!person) throw new Error("Person is null");
             switch (dtoName) {
                 case PersonResponseDto.name: {
                     return PersonResponseDto.from(person);
@@ -118,5 +119,16 @@ export class PersonService {
             return null;
         }
 
+    }
+
+
+    async savePerson(person: Person) {
+        try {
+            await this.personRepository.save(person)
+        } catch (error) {
+            this.logger.error('[savePerson]: An error occured while saving person');
+            this.logger.error(error);
+            throw error;
+        }
     }
 }

@@ -5,7 +5,23 @@ export enum UserType {
 }
 
 export enum UserStatus {
+    /**
+     * User account is still using and okay
+     */
     Alived,
+
+    /**
+     * User account is deactived by some reasons
+     */
     Deactive,
-    Deleted
+
+    /**
+     * User account is deleted by themself or administrator
+     */
+    Deleted,
+
+    /**
+     * User account is waiting for confirmation
+     */
+    Waiting
 }

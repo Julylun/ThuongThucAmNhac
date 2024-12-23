@@ -26,6 +26,9 @@ import { GmailService } from './modules/gmail/gmail.service';
 import { GmailModule } from './modules/gmail/gmail.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { SearchModule } from './modules/search/search.module';
+import { OtpCode } from './modules/auth/otp-code/entity/otp-code.entity';
+import { OtpCodeModule } from './modules/auth/otp-code/otp-code.module';
+import { RegisterModule } from './modules/auth/register/register.module';
 
 let configurationData = null;
 try {
@@ -46,7 +49,7 @@ try {
             username: configurationData.database.username,
             password: configurationData.database.password,
             database: configurationData.database.database,
-            entities: [Person, AccessToken, RefreshToken, Playlist, Song],
+            entities: [Person, AccessToken, RefreshToken, Playlist, Song, OtpCode],
             migrations: ['src/migration/**/*.ts'],
             synchronize: false, // Đặt thành false để tránh đồng bộ hóa tự động khi chạy app
             logging: true,
@@ -68,6 +71,8 @@ try {
         HashModule,
         GmailModule,
         SearchModule,
+        OtpCodeModule,
+        RegisterModule
     ],
     controllers: [AppController],
     providers: [AppService, JwtMiddleWare],
