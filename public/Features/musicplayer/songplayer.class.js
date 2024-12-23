@@ -1,16 +1,20 @@
-// import { Howl, Howler } from './lib/howlerjs/howler.js'
-
-// import { Howl, Howler} from './lib/howlerjs/howler.min.js'
 import * as ControlBar from '../../Js/controlBar/controlBar.js'
+import * as ControlBarComponent from '../../Components/controlbar/controlbar.js'
 
 class SongPlayer {
+    static STATUS_STOPPED = -1;
+    static STATUS_PAUSED = 0;
+    static STATUS_PLAYING = 1;
+
     static instance = null;
     static songIdToHref(songId) {
         console.log(songId)
         return window.origin + '/api/v1/song/stream?id=' + songId;
     }
     static getSongPlayer = () => {
-        if (!this.instance) this.instance = new SongPlayer();
+        if (!this.instance) {
+            this.instance = new SongPlayer();
+        }
         return this.instance;
     }
 
@@ -18,10 +22,16 @@ class SongPlayer {
         this.audio = null;
         this.queue = [];
         this.songIndex = 0;
-        this.progressBar = document.getElementById('music-slider'),
+        this.progressBar = document.getElementById('music-slider');
         this.volume = 0.7;
+        this.status = SongPlayer.STATUS_STOPPED;
+        this.isLooping = false;
+        this.isSuffering = false;
     }
 
+    addSongToCurrentPosition(song) {
+        this.queue.splice(this.songIndex + 1, 0, song);
+    }
 
     /**
      * Add a song to the queue
@@ -31,7 +41,6 @@ class SongPlayer {
         this.queue.push(song)
     }
 
-
     /**
      * Add a song list to the queue
      * @param {Song[]} songs 
@@ -40,14 +49,12 @@ class SongPlayer {
         for (let song of songs) this.addSongToQueue(song);
     }
 
-
     /**
      * Remove all songs from the queue
      */
     removeAllSongs() {
         this.queue = []
     }
-
 
     /**
      * Load song at current index
@@ -56,7 +63,7 @@ class SongPlayer {
         console.log(this.queue)
         // console.log(this.songIndex)
         let currentSong = this.queue.at(this.songIndex)
-        
+
         // console.log(currentSong)
         let path = SongPlayer.songIdToHref(currentSong.songId);
         console.log(path)
@@ -64,13 +71,11 @@ class SongPlayer {
             src: [path],
             volume: 0.7,
             format: ['mp3'],
-            onend: function () { }
+            onend: () => {ControlBarComponent.updateControlBarButtonColor() ;ControlBar.onEndSong() }
         })
 
         ControlBar.updateControlBarInformation()
     }
-
-
 
     /**
      * Delete song from audio instance (howler instance).
@@ -80,15 +85,16 @@ class SongPlayer {
         this.audio.unload();
     }
 
-
-
     /**
      * Increase song index one un
      * @returns true if current index is not at the end of queue, false if it is the end of queue 
      */
     nextSongIndex() {
         if (this.songIndex + 1 < this.queue.length) {
-            this.songIndex += 1;
+            if (this.isSuffering) {
+                Math.floor(Math.random() * this.queue.length)
+            }
+            else this.songIndex += 1;
             return true;
         }
         return false
@@ -99,7 +105,13 @@ class SongPlayer {
      * @returns true if current index is not at the first of queue, false if it is the first of queue 
      */
     previousSongIndex() {
-        this.songIndex -= 1;
+        if (this.songIndex - 1 >= 0) {
+            if (this.isSuffering) {
+                Math.floor(Math.random() * this.queue.length)
+            } else this.songIndex -= 1;
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -109,6 +121,7 @@ class SongPlayer {
     playSong() {
         try {
             this.audio.play();
+            this.status = SongPlayer.STATUS_PLAYING;
             return true;
         } catch (error) {
             console.error(error)
@@ -116,40 +129,39 @@ class SongPlayer {
         }
     }
 
-
     /**
      * wth
      * ! This can't use right now :v
      */
     resume() {
         this.audio.resume()
+        this.status = SongPlayer.STATUS_PLAYING;
     }
+
     /**
      * Stop song
      */
     stop() {
         this.audio.stop();
+        this.status = SongPlayer.STATUS_STOPPED;
     }
-
 
     /**
      * Pause song
      */
     pauseSong() {
         this.audio.pause();
+        this.status = SongPlayer.STATUS_PAUSED;
     }
-
 
     /**
      * Get current time of audio
      * @returns time on second
      */
     getCurrentTime() {
+        console.log(this.audio.seek())
         return this.audio.seek();
     }
-
-
-
 
     /**
      * set current time of audio
@@ -159,20 +171,18 @@ class SongPlayer {
         this.audio.seek(timeOnSecond)
     }
 
-
     /**
      * Set volume. Volume parameter has value from 0.0 to 1.0.
      * @param {float} volumeNumber 
      */
     setVolume(volumeNumber) {
-        if(volumeNumber < 0 || volumeNumber > 1) {
+        if (volumeNumber < 0 || volumeNumber > 1) {
             console.error('Volume number must have value between 0.0 and 1');
             return;
         }
         this.volume = volumeNumber;
         this.audio.volume(volumeNumber)
     }
-
 
     /**
      * Get the current song from the music player queue
@@ -184,8 +194,31 @@ class SongPlayer {
         return this.queue[this.songIndex];
     }
 
+
+    looping() {
+        return this.isLooping;
+    }
+
+    setLooping(isLooping) {
+        this.isLooping = isLooping;
+    }
+
+    suffering() {
+        return this.suffuring;
+    }
+
+    setSuffering(suffering) {
+        this.suffuring = suffering;
+    }
+
+
+
     //TODO: <Hoang Luan> [Create]: Create removeSongAt method
     removeSongAt(index) {
+    }
+
+    getStatus() {
+        return this.status;
     }
 }
 

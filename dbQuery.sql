@@ -61,11 +61,11 @@ INSERT INTO Person (personName, personEmail, personPassword, personType, personS
 VALUES ('admin', 'admin@example.july','$2a$10$m5lUV2PxFJ/mqMgiavH1VuntpwUJrUG1SwIOXwadGYchpf/jWbcnG',1,0);
 
 INSERT INTO Song (songName, songImage, songPath, songDuration, songArtist) 
-VALUES ('Ngay that dep de noi loi chia tay', 'public\\uploads\\songs\\image\\example\\eg-file001.jpg', 'uploads\\songs\\audio\\example\\eg-file001.mp3', 100, 1)
-,('Co em', 'public\\uploads\\songs\\image\\example\\eg-file002.jpg', 'uploads\\songs\\audio\\example\\eg-file002.mp3', 100, 1)
-,('Anh phai lam gi de em', 'public\\uploads\\songs\\image\\example\\eg-file003.jpg', 'uploads\\songs\\audio\\example\\eg-file003.mp3', 100, 1)
-,('Dung lam trai tim anh dau', 'public\\uploads\\songs\\image\\example\\eg-file004.jpg', 'uploads\\songs\\audio\\example\\eg-file004.mp3', 100, 1)
-,('Gio thi', 'public\\uploads\\songs\\image\\example\\eg-file005.jpg', 'uploads\\songs\\audio\\example\\eg-file005.mp3', 100, 1);
+VALUES ('Ngay that dep de noi loi chia tay', 'example\\eg-file001.jpg', 'example\\eg-file001.mp3', 100, 1)
+,('Co em', 'example\\eg-file002.jpg', 'example\\eg-file002.mp3', 100, 1)
+,('Anh phai lam gi de em', 'example\\eg-file003.jpg', 'example\\eg-file003.mp3', 100, 1)
+,('Dung lam trai tim anh dau', 'example\\eg-file004.jpg', 'example\\eg-file004.mp3', 100, 1)
+,('Gio thi', 'example\\eg-file005.jpg', 'example\\eg-file005.mp3', 100, 1);
 
 
 
