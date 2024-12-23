@@ -45,8 +45,10 @@ function createSong(song) {
 
     const img = document.createElement("img");
     img.classList.add("bg-[#AAA]", "size-10", "mt-4", "mb-4", "rounded-lg", "md:mt-2", "md:mb-2", "md:size-14", "md:rounded-sm");
-    img.src = `/public/uploads/songs/image/${song.songImage}`;
+    img.src = song.songImage;
     img.alt = song.songName;
+    
+    
 
     const textDiv = document.createElement("div");
     textDiv.classList.add("flex", "flex-col", "ml-4", "md:ml-5");

@@ -12,13 +12,14 @@ function createButton({ name, imgSrc, id }) {
     container.style.marginBottom = "15px";
 
     const button = document.createElement("button");
-    button.id = id;
+    button.id = `song-${id}`;
     button.className = "relative w-full h-full overflow-hidden rounded-full";
+    button.setAttribute('data-song-id', id);
 
     if (imgSrc) {
         const img = document.createElement("img");
         img.className = "w-full h-full object-cover rounded-2xl bg-[#FFF] transition-transform duration-300 ease-in-out hover:scale-110";
-        img.src = imgSrc;
+        img.src = '../../Assets/image/library/HTHai.png';
         img.alt = name;
         button.appendChild(img);
     }
@@ -60,7 +61,7 @@ function createButton({ name, imgSrc, id }) {
 
 
 //FIXME: Similar above
-function createPlaylistButton({ name, imgSrc, id }) {
+function createPlaylistButton({ playlistName }) {
     const button = document.createElement("button");
     button.className = "relative w-48 h-48 mr-5 overflow-hidden rounded-2xl mt-5";
 
@@ -69,8 +70,8 @@ function createPlaylistButton({ name, imgSrc, id }) {
 
     const img = document.createElement("img");
     img.className = "w-full h-full object-cover rounded-2xl bg-[#FFF] transition-transform duration-300 ease-in-out hover:scale-110";
-    img.src = imgSrc;
-    img.alt = name;
+    img.src = "../../Assets/image/library/playlist.png";
+    img.alt = playlistName || "Playlist";
     imgContainer.appendChild(img);
 
     const textContainer = document.createElement("div");
@@ -78,14 +79,14 @@ function createPlaylistButton({ name, imgSrc, id }) {
 
     const title = document.createElement("h1");
     title.className = "text-[#fff] font-bold text-xl";
-    title.textContent = name;
+    title.textContent = playlistName;
     textContainer.appendChild(title);
 
     button.appendChild(imgContainer);
     button.appendChild(textContainer);
 
     button.addEventListener("click", () => {
-        console.log(`${name} clicked!`);
+        console.log(`${playlistName} clicked!`);
     });
 
     return button;
@@ -96,11 +97,33 @@ function createPlaylistButton({ name, imgSrc, id }) {
  * 
  * @param {LibraryButtonData[]} libraries - List of library buttons
  */
+// function renderButtons(libraries) {
+//     const librarySection = document.getElementById("js_library-button");
+//     libraries.forEach((item) => {
+//         const buttonElement = createButton(item);
+//         librarySection.appendChild(buttonElement);
+//     });
+// }
+
 function renderButtons(libraries) {
     const librarySection = document.getElementById("js_library-button");
+    if (!librarySection) {
+        console.error("Library section not found in DOM.");
+        return;
+    }
+
+    const processedArtists = new Set(); // Track unique artists
     libraries.forEach((item) => {
-        const buttonElement = createButton(item);
-        librarySection.appendChild(buttonElement);
+        // Check if the artist is already processed
+        if (!processedArtists.has(item.artistName)) {
+            const buttonElement = createButton({
+                name: item.artistName,
+                imgSrc: item.imgSrc,
+                id: item.id,
+            });
+            librarySection.appendChild(buttonElement);
+            processedArtists.add(item.artistName); // Add artist to the processed set
+        }
     });
 }
 
@@ -110,14 +133,29 @@ function renderButtons(libraries) {
  * 
  * @param {PlaylistButtonData[]} myPlaylists - List of playlist buttons
  */
-function renderPlaylistButtons(myPlaylists) {
-    const container = document.getElementById("js_mylibrary-button");
-    myPlaylists.forEach((playlist) => {
-        const playlistButton = createPlaylistButton(playlist);
-        container.appendChild(playlistButton);
-    });
-}
+    // function renderPlaylistButtons(myPlaylists) {
+    //     const container = document.getElementById("js_mylibrary-button");
+    //     myPlaylists.forEach((playlist) => {
+    //         const playlistButton = createPlaylistButton(playlist);
+    //         container.appendChild(playlistButton);
+    //     });
+    // }
 
+    function renderPlaylistButtons(myPlaylists) {
+        const container = document.getElementById("js_mylibrary-button");
+        if (myPlaylists && Array.isArray(myPlaylists)) {
+            myPlaylists.forEach((playlist) => {
+                const playlistButton = createPlaylistButton({
+                    playlistName: playlist.playlistName,
+                    imgSrc: "../../Assets/image/library/playlist.png"
+                });
+                container.appendChild(playlistButton);
+            });
+        } else {
+            console.error('Invalid playlists data:', myPlaylists);
+        }
+    }
+   
 
 const renderAlbums = (myAlbums) => {
     const albumsContainer = document.getElementById('js_myAlbums');
@@ -144,37 +182,44 @@ const renderAlbums = (myAlbums) => {
 
 }
 
-
+function formatDuration(durationInSeconds) {
+    const minutes = Math.floor(durationInSeconds / 60);
+    const seconds = durationInSeconds % 60;
+    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+}
 
 const renderFavoriteSongs = (myFavoriteSongs) => {
+    
     const favoriteSongsContainer = document.getElementById('js_myFavoriteSongs');
-
+    
     myFavoriteSongs.forEach(song => {
         const songRow = document.createElement('div');
         songRow.classList.add('grid', 'grid-cols-3', 'gap-3', 'border-y-1.5', 'border-[#1D1529]', 'hover:bg-[#2F2739]', 'hover:rounded-md');
-
+        const formattedTime = formatDuration(song.time);
         songRow.innerHTML = `
         <div>
             <button class="ml-5 w-full h-full">
                 <div class="_music-item group font-Nunito flex flex-row items-center w-full">
                     <img class="bg-[#AAA] size-20 mt-4 mb-4 rounded-lg md:mt-2 md:mb-2 md:size-14 md:rounded-sm" src="${song.image}" alt="${song.song}">
                     <div class="ml-3 flex flex-col">
-                        <p class="font-semibold text-sm xl:text-md lg:text-xl text-[#FFF] group-hover:text-[#b66dde] md:text-base">${song.song}</p>
-                        <p class="font-semibold text-sm text-[#888888] md:text-sm hover:underline">${song.artist}</p>
+                        <p class="font-semibold text-sm text-[#FFF] group-hover:text-[#b66dde] md:text-base">${song.song}</p>
+                        <p class="font-semibold text-sm text-[#888888] md:text-sm hover:underline text-left">${song.artist}</p>
                     </div>
                 </div>
             </button>
         </div>
+         ${song.album ? `
         <div class="flex items-center justify-center h-full">
             <a href="#" class="text-center text-[#fff] text-[15px] hover:text-[#b66dde] hover:underline">${song.album}</a>
         </div>
+        ` : '<div></div>'}
         <div class="flex items-center justify-end h-full mr-2">
             <button>
                 <svg class="w-[25px] h-[25px] mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M2 9.1371C2 14 6.01943 16.5914 8.96173 18.9109C10 19.7294 11 20.5 12 20.5C13 20.5 14 19.7294 15.0383 18.9109C17.9806 16.5914 22 14 22 9.1371C22 4.27416 16.4998 0.825464 12 5.50063C7.50016 0.825464 2 4.27416 2 9.1371Z" fill="#b66dde"/>
                 </svg>
             </button>
-            <h2 class="text-right font-normal text-sm text-[#888888]">${song.time}</h2>
+            <h2 class="text-right font-normal text-sm text-[#888888]">${formattedTime}</h2>
         </div>
     `;
 
