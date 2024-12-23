@@ -2,6 +2,8 @@ export {
     renderSong
 }
 
+import { addSongToCurrentPositionEvent } from "../../Features/event/button.event.js";
+
 const container = document.getElementById("js_newMusicChart");
 
 function formatDuration(durationInSeconds) {
@@ -78,6 +80,8 @@ function createSong(song) {
 
     songDiv.appendChild(button);
     songDiv.appendChild(time);
+
+    button.onclick = () => { addSongToCurrentPositionEvent(song) }
 
     return songDiv;
 }

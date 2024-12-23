@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <div class="morph-gradient-background">
+        <!-- <div class="spot-light"></div> -->
+
+
+
+        <style>
+            .morph-gradient-background {
+                width: 100vw;
+                height: 100vh;
+                background-color: black;
+            }
+
+            .stalker-light {
+                position: fixed;
+                top: 0px;
+                left: 0px;
+                border-radius: 100%;
+                transition: ease-out 4s;
+            }
+
+            .spot-light {
+                position: fixed;
+                top: 0px;
+                left: 0px;
+                border-radius: 100%;
+                transition: ease-in-out 3s;
+            }
+        </style>
+        <script>
+            function random(min, max) {
+                return Math.floor(Math.random() * (max - min)) + min;
+            }
+            const fixedSize = 200;
+            const rangeSize = 200;
+            const fixedFilter = 70;
+
+            const valueToTarget = (value, targetValue, increaseValue) => {
+                if (value < targetValue) {
+                    if (targetValue - value < increaseValue) return targetValue;
+                    return value += increaseValue;
+                }
+                else {
+                    if (value - targetValue < increaseValue) return targetValue;
+                    return value -= increaseValue;
+                }
+            }
+
+            //Move element from this pos to anothor pos with ease linear animation
+            const goGoBurhBurh = (element, targetPosition, time) => {
+                const movingDistancePerTime = 50;
+                //Distance between element and target pos
+                let distance = Math.sqrt(
+                    Math.abs(Math.pow(targetPosition.x - element.offsetLeft, 2) - Math.pow(targetPosition.y - element.offsetTop, 2))
+                )
+                // console.log('time to move inside function: ' + time)
+                // console.log('distance between two point: ' + distance)
+                //Space per milis = distance / time (fixed)
+                let spacePerMilis = Math.floor(distance / (time / 1000)); //int
+                // console.log('space per milis:')
+                // console.log('Details: ' + targetPosition.x + " " + targetPosition.y + ' ' + element.offsetLeft + ' ' + element.offsetTop)
+
+                let intervalId = setInterval(() => {
+                    let elementYPos = element.offsetTop;
+                    let elementXPos = element.offsetLeft;
+
+                    // console.log(elementXPos)
+                    // console.log(valueToTarget(elementXPos, targetPosition.x,spacePerMilis) + "px")
+                    if (elementXPos != targetPosition.x) element.style.left = valueToTarget(elementXPos, targetPosition.x, spacePerMilis) + 'px';
+                    if (elementYPos != targetPosition.y) element.style.top = valueToTarget(elementYPos, targetPosition.y, spacePerMilis) + 'px';
+                })
+            }
+            const makeItGoingMorph = (spotLight, movingDistance) => {
+                let dynamicSizeHeight = random(fixedSize - rangeSize, fixedSize + rangeSize);
+                let dynamicSizeWidth = random(fixedSize - rangeSize, fixedSize + rangeSize);
+                let dynamicFilterRange = random(fixedFilter - 20, fixedFilter + 30);
+                let randomPos = {
+                    x: random(spotLight.offsetLeft - movingDistance, spotLight.offsetLeft + movingDistance),
+                    y: random(spotLight.offsetTop - movingDistance, spotLight.offsetTop + movingDistance)
+                }
+
+                //Time to move have to smaller than interval delay tme
+                let timeToMove = random(1, 3) * 1000;
+                console.log('time to move' + timeToMove)
+
+                spotLight.style.backgroundColor = getRandomHexColor()
+
+                spotLight.style.width = dynamicSizeWidth + 'px';
+                spotLight.style.height = dynamicSizeHeight + 'px';
+                spotLight.style.filter = 'blur(' + dynamicFilterRange + 'px)';
+                goGoBurhBurh(spotLight, randomPos, timeToMove);
+            }
+
+            function getRandomHexColor() {
+                const letters = '0123456789ABCDEF';
+                let color = '#';
+                for (let i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+
+            const createSpotLight = (colorCode, randomPos, isFollowMouse) => {
+                let spotLight = document.createElement('div');
+                if (isFollowMouse) {
+                    spotLight.classList.add('stalker-light')
+                }
+                else spotLight.classList.add('spot-light');
+                spotLight.style.backgroundColor = colorCode;
+                spotLight.style.filter = 'blur(100px)';
+                document.getElementsByClassName('morph-gradient-background').item(0).appendChild(spotLight)
+                if (randomPos) {
+                    spotLight.style.top = random(0, spotLight.parentElement.offsetHeight) + 'px';
+                    spotLight.style.left = random(0, spotLight.parentElement.offsetWidth) + 'px';
+                }
+
+            }
+            const onMorphStart = () => {
+                for (let index = 0; index <= 15 ; index += 1)
+                
+                    createSpotLight(getRandomHexColor(), true);
+                createSpotLight('#C851B2', true, true);
+                let spotLights = document.getElementsByClassName('spot-light');
+                // for (let spItem of spotLights) {
+                //     let randomTime = random(3000, 4000);
+
+                //     setInterval(makeItGoingMorph(spItem, 300), randomTime)
+                //     // makeItGoingMorph(spItem, 200)
+                // }
+                setInterval(() => {
+                    for (let spItem of spotLights)
+                        makeItGoingMorph(spItem, 300)
+
+
+                    let mouseInterval = undefined;
+                    let lastEvent;
+                    document.addEventListener('mousemove', (e) => {
+                        lastEvent = e;
+                        if (mouseInterval == undefined) mouseInterval = setInterval(() => {
+                            let stalkerLights = document.getElementsByClassName('stalker-light')
+                            for (let stalkerLight of stalkerLights) {
+
+                                let dynamicSizeHeight = random(fixedSize - 20, fixedSize + 20);
+                                let dynamicSizeWidth = random(fixedSize - 20, fixedSize + 20);
+                                let dynamicFilterRange = random(fixedFilter - 20, fixedFilter + 30);
+
+                                stalkerLight.style.width = dynamicSizeWidth + 'px';
+                                stalkerLight.style.height = dynamicSizeHeight + 'px';
+                                stalkerLight.style.filter = 'blur(' + dynamicFilterRange + 'px)';
+                                stalkerLight.style.top = (lastEvent.clientY - stalkerLight.offsetHeight / 2) + 'px';
+                                stalkerLight.style.left = (lastEvent.clientX - stalkerLight.offsetWidth / 2) + 'px';
+                            }
+                        }, 1000)
+                    })
+                    // console.log(spotLights)
+                }, 3000)
+            }
+
+            onMorphStart();
+
+        </script>
+    </div>
+</body>
+
+
+
+</html>

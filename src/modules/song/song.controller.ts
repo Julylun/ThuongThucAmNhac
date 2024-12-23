@@ -62,6 +62,7 @@ export class SongController {
     @Get('stream')
     async streamSong(@Query('id') id: number, @Res() res: Response) {
         try {
+            const FILEPATH = 'uploads\\songs\\audio\\'
             this.logger.debug('Stream song with id -> ' + id);
             let song = await this.songService.getSongById(id);
             if (song == null) {
@@ -72,20 +73,20 @@ export class SongController {
             this.logger.debug(song);
             this.logger.debug('Start streaming song');
 
-            let songFile = await parseFile(song.songPath)
-            let mimeType = mime.lookup(song.songPath);
+            let songFile = await parseFile(FILEPATH + song.songPath)
+            let mimeType = mime.lookup(FILEPATH + song.songPath);
 
 
             this.logger.debug('Song file parsed, file format is below this line');
             this.logger.debug(songFile);
-            this.logger.debug('mime type -> ', mime.lookup(song.songPath));
+            this.logger.debug('mime type -> ', mime.lookup(FILEPATH + song.songPath));
 
             res.set({
                 'Content-Type': mimeType,
-                'Content-Length': statSync(song.songPath).size
+                'Content-Length': statSync(FILEPATH + song.songPath).size
             })
 
-            const fileStream = createReadStream(song.songPath);
+            const fileStream = createReadStream(FILEPATH + song.songPath);
             res.status(HttpCode.OK);
             res.statusMessage = HttpMessage.OK;
             fileStream.pipe(res);
@@ -209,7 +210,9 @@ export class SongController {
                 throw new Error('FORBIDDEN');
             }
 
-            let song = await this.songService.createSong((formData.songName) ? formData.songName : songFile.originalname, songFile.path, imageFile.path, await this.songService.getSongDuration(songFile.path), artist, 0);
+            console.log(songFile);
+            console.log(imageFile);
+            let song = await this.songService.createSong((formData.songName) ? formData.songName : songFile.originalname, songFile.filename, imageFile.filename, await this.songService.getSongDuration(songFile.path), artist, 0);
 
             if (song == null) {
                 this.logger.error('Unknown error || song is created but still null');

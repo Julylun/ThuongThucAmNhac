@@ -8,7 +8,10 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       'background': '#170F23',
-      'side_bar_background':'#231B2E'
+      'side_bar_background':'#231B2E',
+      'control-button': '#FFFFFF',
+      'control-button--hover': '#DFBAFF',
+      'control-button--active': '#ff66f0'
     },
     extend: {
       dropShadow: {

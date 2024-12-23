@@ -1,10 +1,15 @@
 import { createElement } from "../common/component.js";
+import SongPlayer from "../../Features/musicplayer/songplayer.class.js";
+import { addSongToCurrentPositionEvent } from "../../Features/event/button.event.js";
+import ResourceService from "../../Js/service/resourceService/resourceService.js";
 
 export {
     createMusicItem,
     createMusicSector,
     renderMusicItem
 }
+
+const songPlayer = SongPlayer.getSongPlayer();
 
 const createMusicSector = (sectorName, sectorId) => {
     const explorerSuggestions = createElement('div', ['explorer__suggestions', 'ml-10', 'mt-5', 'flex', 'flex-col', 'w-full', 'overflow-y-scroll'],document.getElementById('content-page__explore'),{},sectorId);
@@ -23,8 +28,9 @@ const createMusicSector = (sectorName, sectorId) => {
 
 
 
-const createMusicItem = (songName, songAuthor, imageSource, parentElement) => {
+const createMusicItem = (songData,songName, songAuthor, imageSource, parentElement) => {
     const button = createElement('button', ['w-full'], parentElement);
+    button.onclick = () => {addSongToCurrentPositionEvent(songData)}
     const musicItem = createElement(
         'div',
         ['_music-item', 'group', 'font-Nunito', 'flex', 'flex-row', 'items-center', 'w-full'],
@@ -53,9 +59,10 @@ const createMusicItem = (songName, songAuthor, imageSource, parentElement) => {
 const renderMusicItem = (musicItemList, sectorHtmlInstance) => {
     for (let musicItem of musicItemList) {
         createMusicItem(
+            musicItem,
             musicItem.songName,
             musicItem.songArtist.artistName,
-            window.origin + musicItem.songImage.slice(6, musicItem.songImage.length),
+            ResourceService.DefaultImagePath + musicItem.songImage,
             sectorHtmlInstance
         );
     }
