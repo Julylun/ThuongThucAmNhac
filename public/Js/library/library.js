@@ -23,7 +23,7 @@ const onStart = async () => {
                 allLibraries.push(...libraries);
                 allSongs.push(...songs);
             }
-
+            const uniqueSongs = getUniqueSongs(allSongs);
             const uniqueLibraries = getUniqueArtists(allLibraries);
             LibraryComponent.renderButtons(uniqueLibraries);
 
@@ -35,7 +35,7 @@ const onStart = async () => {
             }));
             LibraryComponent.renderPlaylistButtons(myPlaylists);
 
-            const myFavoriteSongs = allSongs.map((song) => ({
+            const myFavoriteSongs = uniqueSongs.map((song) => ({
                 song: song.songName,
                 artist: song.songArtist?.artistName || "Unknown Artist",
                 album: song.albumName,
@@ -62,5 +62,14 @@ function getUniqueArtists(libraries) {
         return false;
     });
 }
-
+function getUniqueSongs(songs) {
+    const seenIds = new Set();
+    return songs.filter((song) => {
+        if (!seenIds.has(song.songId)) {
+            seenIds.add(song.songId);
+            return true;
+        }
+        return false;
+    });
+}
 onStart();

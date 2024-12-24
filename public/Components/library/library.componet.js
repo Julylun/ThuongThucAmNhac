@@ -63,7 +63,7 @@ function createButton({ name, imgSrc, id }) {
 //FIXME: Similar above
 function createPlaylistButton({ playlistName }) {
     const button = document.createElement("button");
-    button.className = "relative w-48 h-48 mr-5 overflow-hidden rounded-2xl mt-5";
+    button.className = "relative w-48 h-48 mr-5 overflow-hidden rounded-2xl mt-5 group";
 
     const imgContainer = document.createElement("div");
     imgContainer.className = "absolute inset-0";
@@ -78,7 +78,7 @@ function createPlaylistButton({ playlistName }) {
     textContainer.className = "absolute inset-0 flex font-Nunito justify-center items-center pointer-events-none";
 
     const title = document.createElement("h1");
-    title.className = "text-[#fff] font-bold text-xl";
+    title.className = "text-[#fff] font-bold group-hover:text-[#DFAFF9FF] text-xl";
     title.textContent = playlistName;
     textContainer.appendChild(title);
 
@@ -200,9 +200,9 @@ const renderFavoriteSongs = (myFavoriteSongs) => {
         <div>
             <button class="ml-5 w-full h-full">
                 <div class="_music-item group font-Nunito flex flex-row items-center w-full">
-                    <img class="bg-[#AAA] size-20 mt-4 mb-4 rounded-lg md:mt-2 md:mb-2 md:size-14 md:rounded-sm" src="${song.image}" alt="${song.song}">
+                    <img class="bg-[#AAA] aspect-square size-20 mt-4 mb-4 rounded-lg md:mt-2 md:mb-2 md:size-14 md:rounded-sm" src="${song.image}" alt="${song.song}">
                     <div class="ml-3 flex flex-col">
-                        <p class="font-semibold text-sm text-[#FFF] group-hover:text-[#b66dde] md:text-base">${song.song}</p>
+                        <p class="font-semibold text-sm text-[#FFF] group-hover:text-[#b66dde] md:text-sm lg:text-base">${song.song}</p>
                         <p class="font-semibold text-sm text-[#888888] md:text-sm hover:underline text-left">${song.artist}</p>
                     </div>
                 </div>
