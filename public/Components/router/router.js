@@ -1,5 +1,6 @@
 import { getTextFromFile } from "../../Features/common/file.js";
 import * as Page from '../../Features/common/page.js';
+import { getFileName, removeFileName } from "../../Features/common/path.js";
 
 /**
  * Router is used to change page without reload. This is an upgrade version of Loader.
@@ -13,6 +14,7 @@ class Router {
     }
     constructor() {
         this.routeContainer = new Map();
+        this.specialPage = new Set();
     }
 
     directNoReload = (url) => {
@@ -42,8 +44,37 @@ class Router {
         this.routeContainer.set(url, filePath);
     }
 
+    createSpecialPage(url) {
+        if (!url) throw new Error('Missing parameters');
+        this.specialPage.add(url);
+    }
+
     removeRoute(url) {
         this.routeContainer.delete(url)
+    }
+
+    async moveTo(filePath) {
+        try {
+            let htmlText = await getTextFromFile(filePath);
+            let htmlElement = new DOMParser().parseFromString(htmlText, 'text/html');
+            document.body.innerHTML = htmlElement.body.innerHTML;
+            let styleElements = []
+            for (let linkElement of htmlElement.getElementsByTagName('link')) {
+                if (linkElement.rel)
+                    styleElements.push(linkElement);
+            }
+            for (let styleElement of styleElements) {
+                styleElement.href = getFileName(filePath) + removeFileName(styleElement.href);
+
+                document.head.appendChild(styleElement);
+            }
+
+            Page.injectScript(htmlElement,getFileName(filePath));
+        }
+        catch (error) {
+            console.error(error);
+            throw error;
+        }
     }
 
     /**
@@ -55,7 +86,10 @@ class Router {
             let pathname = window.location.pathname.slice(1, window.location.pathname.length);
             // console.log('pathname:' + pathname)
             let filePath = this.routeContainer.get(pathname);
-            if (filePath != undefined) await this.routeTo(filePath);
+            if (filePath != undefined) {
+                if (this.specialPage.has(pathname)) await this.moveTo(filePath);
+                else await this.routeTo(filePath);
+            }
             else return false;
             return true;
         } catch (error) {

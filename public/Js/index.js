@@ -16,11 +16,15 @@ const router = Router.getInstance();
  */
 const routerConfiuration = () => {
     router.createRoute('login', './Views/Pages/login.html');
-    router.createRoute('admin', './Admin/index.admin.html');
-    router.createRoute('register','./Views/Pages/logup.html');
-    router.createRoute('logup','./Views/Pages/logup.html');
-    router.createRoute('change-password','/Views/pages/changePassword.html')
-    router.createRoute('confirm','/Views/pages/verifyOTP.html')
+    router.createRoute('register', './Views/Pages/logup.html');
+    router.createRoute('logup', './Views/Pages/logup.html');
+    router.createRoute('change-password', '/Views/pages/changePassword.html')
+    router.createRoute('confirm', '/Views/pages/verifyOTP.html')
+
+    router.createRoute('admin2', './_Admin/dist/index.html');
+    router.createRoute('admin2/form', './_Admin/dist/index.html');
+
+    router.createSpecialPage('admin2')
 }
 
 
@@ -28,14 +32,14 @@ const routerConfiuration = () => {
  * onStart is the main function of this javascript file. That means onStart will be called first.
  */
 const onStart = async () => {
-    // console.debug('checkpoint 1')
+    console.debug('checkpoint 1')
     routerConfiuration();
     if ((await router.autoRoute())) {
     } else {
         let songPlayer = SongPlayer.getSongPlayer();
 
         let isLoaded = await UserService.getUserProfile();
-        if(!isLoaded) {
+        if (!isLoaded) {
             AccessTokenService.refreshAccessToken()
         }
 

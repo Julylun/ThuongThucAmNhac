@@ -1,6 +1,18 @@
 export {
     getFileAbsolutePath,
-    getRelativePath
+    getRelativePath,
+    getFileName,
+    removeFileName
+}
+
+
+const getFileName = (path) => {
+    return path.match(/(.+\/)[^/]+$/)[1]
+}
+
+const removeFileName = (path) => {
+    return path.replace(/^https?:\/\/[^\/]+/, '');
+
 }
 
 function getRelativePath(from, to) {
