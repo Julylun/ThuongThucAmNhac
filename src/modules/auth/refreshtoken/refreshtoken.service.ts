@@ -18,6 +18,29 @@ export class RefreshTokenService {
 
     private logger = new Logger(RefreshTokenService.name)
 
+    /**
+     * Verify refresh token, if it is expired or sth, return null, esle return payload.
+     * @param refreshToken 
+     * @returns {any}
+     */
+    verify(refreshToken: string) {
+        try {
+            let payload = this.jwtService.verify(refreshToken)
+            return payload;
+        } catch (error) {
+            this.logger.error('[verify]: An error occured while verify refresh token');
+            throw error;
+        }
+    }
+
+    /**
+     * Parse refresh token to payload without verify it.
+     * @param refreshToken 
+     * @returns {any}
+     */
+    decode(refreshToken: string) {
+        return this.jwtService.decode(refreshToken);
+    }
 
     generate(person: Person): RefreshToken {
         try {
@@ -44,11 +67,11 @@ export class RefreshTokenService {
             this.logger.debug("Decoded (below) ")
             this.logger.debug(jwtDecoded)
 
-            if(!jwtDecoded) throw new Error("JWT is invalid")
+            if (!jwtDecoded) throw new Error("JWT is invalid")
 
 
             return jwtDecoded.sub
-        } catch(error) {
+        } catch (error) {
             this.logger.debug(error.message)
             return -1
         }

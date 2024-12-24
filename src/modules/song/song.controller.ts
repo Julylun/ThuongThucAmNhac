@@ -86,6 +86,10 @@ export class SongController {
                 'Content-Length': statSync(FILEPATH + song.songPath).size
             })
 
+
+            song.listenTimes+=1;
+            this.songService.saveSong(song)
+
             const fileStream = createReadStream(FILEPATH + song.songPath);
             res.status(HttpCode.OK);
             res.statusMessage = HttpMessage.OK;

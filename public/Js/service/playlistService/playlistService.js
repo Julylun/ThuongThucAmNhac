@@ -8,7 +8,7 @@ const getAllPlaylist = async () => {
   try {
     const apiBase = (await ApiService.getApiBase()) + "playlist";
 
-    const accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJuYW1lIjoibGVlbHlfMjgwMiIsImlhdCI6MTczNDg1MTA3NCwiZXhwIjoxNzM2MTQ3MDc0fQ.Wk-5NY6yDwEfor56iOSD-LPNojI0Gc6a3bNi5JGf8Rk";
+    const accessToken = localStorage.getItem('accessToken');
     const response = await fetch(apiBase, {
       method: "GET",
       headers: {

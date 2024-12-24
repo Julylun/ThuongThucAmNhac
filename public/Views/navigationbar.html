@@ -8,24 +8,34 @@
 </head>
 
 <body class="w-screen h-screen flex overflow-hidden">
+  <div id="dont__use_this____tailwind-preload" class="hidden h-80"></div>
   <aside id="side-bar"></aside>
   <script type="module" src="../Components/sidebar/sidebar.js"></script>
   <div id="main-content" class="flex-1 overflow-hidden">
 
 
     <header id="navigation-bar" class="bg-[#170F23] w-full h-12 overflow-x-hidden flex items-center xl:h-16">
-
-      <div id="profile-box" class="profile-box hidden fixed flex-col right-0 top-0 w-64 h-80 mt-3 mr-3 shadow-xl bg-[#34224FFA] backdrop-blur-sm rounded-2xl bg-[#999]">
-        <div class="profile-box w-full h-fit flex flex-col items-center justify-center mt-4">
-          <img class="profile-box bg-[red] size-16 rounded-full" src="#">
-          <p class="profile-box w-fit mt-3 font-Nunito font-bold text-[white] text-xl">Hello Guest!</p>
-        </div>
-        <div class="profile-box flex-1 flex flex-col justify-around items-center ">
-          <a href="/Views/Pages/login.html"><button class="profile-box mt-14 rounded-2xl border border-[#FFF] stroke-2 bg-[pink]"><p class="font-Nunito text-[white] my-1 mx-3">Login to continue</p></button></a>
-          
-          <button><p class="profile-box text-[white] text-xs">I don't have account</p></button>
-        </div>
+      <div id="profile-box-clear-zone"
+        class="fixed hidden z-40 top-0 left-0 inset-0 transition-all will-change-auto transform-gpu duration-200 bg-[#00000000] ">
       </div>
+        <div id="profile-box" data-w="64" data-h="80"
+          class="profile-box hidden transform-gpu will-change-auto overflow-hidden fixed flex-col z-50 -right-64 top-0 w-64 h-80 mt-3 mr-3 drop-shadow-lg transition-all duration-400 bg-[#1d132c] bg-opacity-100 backdrop-blur-sm rounded-2xl scale-0">
+          <div class="profile-box w-full h-fit flex flex-col items-center justify-center mt-4">
+            <img id="js__profile-box__avatar" class="profile-box bg-[red] size-16 rounded-full" src="#">
+            <p id="js__profile-box__name" class="profile-box w-fit mt-3 font-Nunito font-bold text-[white] text-xl">Hello Guest!</p>
+          </div>
+          <div class="profile-box flex-1 flex flex-col justify-around items-center ">
+            <a href="/login"><button
+                class="profile-box mt-14 rounded-2xl border border-[#FFF] stroke-2 bg-[pink]">
+                <p class="font-Nunito text-[white] my-1 mx-3">Login to continue</p>
+              </button></a>
+
+            <button onclick="window.location.href = window.location.origin + '/logup'">
+              <p class="profile-box text-[white] text-xs">I don't have account</p>
+            </button>
+          </div>
+        </div>
+
 
 
       <button class="ml-4">
@@ -58,16 +68,16 @@
           placeholder="Search songs, albums, artists...">
       </div>
 
-        <button id="js__profile-button" class="ml-auto mr-4">
+      <button id="js__profile-button" class="ml-auto mr-4">
         <svg class="size-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="9" r="3" stroke="#FFF" stroke-width="1.5" />
           <circle cx="12" cy="12" r="10" stroke="#FFF" stroke-width="1.5" />
-          <path d="M17.9691 20C17.81 17.1085 16.9247 15 11.9999 15C7.07521 15 6.18991 17.1085 6.03076 20"
-            stroke="#FFF" stroke-width="1.5" stroke-linecap="round" />
+          <path d="M17.9691 20C17.81 17.1085 16.9247 15 11.9999 15C7.07521 15 6.18991 17.1085 6.03076 20" stroke="#FFF"
+            stroke-width="1.5" stroke-linecap="round" />
         </svg>
       </button>
 
-          </header>
+    </header>
 
 
   </div>
@@ -79,4 +89,5 @@
 
 </body>
 <script type="module" src="../Components/navigationbar/navigationbar.js"></script>
+
 </html>

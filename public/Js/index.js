@@ -1,9 +1,11 @@
-import * as Layout from '../Components/layout.js'
+import * as Layout from '../Components/layout.js';
 import Router from '../Components/router/router.js';
 
-import * as PageLoader from '../Components/loader.js'
+import * as PageLoader from '../Components/loader.js';
 import SongPlayer from '../Features/musicplayer/songplayer.class.js';
-import * as SongService from './service/songService/songServices.js'
+import * as SongService from './service/songService/songServices.js';
+import * as UserService from './service/userService/userServices.js';
+import * as AccessTokenService from './service/accessTokenService/accessTokenService.js';
 
 
 let songPlayer = undefined;
@@ -31,6 +33,11 @@ const onStart = async () => {
     if ((await router.autoRoute())) {
     } else {
         let songPlayer = SongPlayer.getSongPlayer();
+
+        let isLoaded = await UserService.getUserProfile();
+        if(!isLoaded) {
+            AccessTokenService.refreshAccessToken()
+        }
 
 
         Layout.onStart();
