@@ -17,6 +17,9 @@ module.exports = {
       dropShadow: {
         'pink-sm': '0px 3px 7px rgba(166, 54, 110, 0.15)'
       },
+      backdropBlur: {
+        'xs':'2px'
+      },
       height: {
         '0.1':'0.01rem',
         '0.2':'0.025rem', 

@@ -31,6 +31,12 @@ export class SongService {
         }
     }
 
+    async saveSong(song: Song) {
+        try {
+            this.songRepository.save(song);
+        } catch (error) { throw error; }
+    }
+
     async getSongsByListenTime(): Promise<Song[]> {
         return await this.songRepository.find({
             take: 24,
@@ -64,7 +70,7 @@ export class SongService {
 
     async getSongByIdList(songIdList: number[]): Promise<Song[]> {
         try {
-            let songs = await this.songRepository.findBy({songId: In(songIdList)});
+            let songs = await this.songRepository.findBy({ songId: In(songIdList) });
             return songs;
         } catch (e) {
             this.logger.error('[getSongByIdList]: ' + e.message);
@@ -74,7 +80,7 @@ export class SongService {
 
     async isSongExist(songId: number): Promise<boolean> {
         try {
-            return (await this.songRepository.existsBy({songId: songId}))
+            return (await this.songRepository.existsBy({ songId: songId }))
         } catch (e) {
             this.logger.error(e)
             return false
@@ -83,7 +89,7 @@ export class SongService {
 
     async isSongsExist(songIdList: number[]): Promise<boolean> {
         try {
-            return (await this.songRepository.existsBy({songId: In(songIdList)}))
+            return (await this.songRepository.existsBy({ songId: In(songIdList) }))
         } catch (e) {
             this.logger.error(e)
             return false;

@@ -6,7 +6,7 @@ import { HttpCode, HttpMessage } from 'src/common/enum.global';
 import { AccesstokenService } from '../auth/accesstoken/accesstoken.service';
 import { PersonResponseDto } from './dto/personResponse.dto';
 import { UserStatus, UserType } from './person.enum';
-import { headerToToken } from 'src/common/function.global';
+import { headerToToken, sendResponseData } from 'src/common/function.global';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreatePersonDto } from './dto/createPerson.dto';
 import { AnyFilesInterceptor } from '@nestjs/platform-express';
@@ -55,26 +55,57 @@ export class PersonController {
         type: InternalServerErrorExampleDto
     })
     @ApiBearerAuth('access-token')
-    getUser(@Req() request: Request, @Res() response: Response): any {
-        const unauthorizedResponse = new ResponseData<any>({ data: null, statusCode: HttpCode.UNAUTHORIZED, message: HttpMessage.UNAUTHORIZED });
-        const authHeader = request.headers['authorization'];
-        if (authHeader && authHeader.startsWith('Bearer ')) {
-            const token = authHeader.slice(7, authHeader.length);
+    async getUser(@Req() request: Request, @Res() response: Response): Promise<any> {
+        let responseData: ResponseData<any> = null;
+        try {
+            let personAccessToken = headerToToken(request);
+            if (!personAccessToken) throw new Error(HttpMessage.UNAUTHORIZED);
 
-            let decodedTokenData = this.accessTokenService.decode(token);
-            if (decodedTokenData == null) return unauthorizedResponse;
-            let personId = decodedTokenData.sub;
-            this.personService.getPerson(personId).then((person) => {
-                if (person == null) return unauthorizedResponse;
-                if (person.personStatus == UserStatus.Deleted) return unauthorizedResponse;
-                response.status(HttpCode.OK);
-                response.statusMessage = HttpMessage.OK;
-                response.send(new ResponseData<any>({ data: this.personService.personToPersonDto(person, PersonResponseDto.name), statusCode: HttpCode.OK, message: HttpMessage.OK }))
-            });
+            let personId = this.accessTokenService.decodeToUserId(personAccessToken);
+            if (personId == -404) throw new Error(HttpMessage.UNAUTHORIZED);
+
+            let personAccount = await this.personService.getPerson(personId);
+            if (!personAccount) throw new Error(HttpMessage.UNAUTHORIZED);
+
+            let personDto = this.personService.personToPersonDto(personAccount, PersonResponseDto.name)
+            responseData = new ResponseData<any>({ data: personDto, statusCode: HttpCode.OK, message: HttpMessage.OK })
+        } catch (error) {
+            switch (error.message) {
+                case HttpMessage.UNAUTHORIZED: {
+                    responseData = new ResponseData<any>({ data: null, statusCode: HttpCode.UNAUTHORIZED, message: HttpMessage.UNAUTHORIZED })
+                    break;
+                }
+                default: {
+                    responseData = new ResponseData<any>({ data: null, statusCode: HttpCode.INTERNAL_SERVER_ERROR, message: HttpMessage.INTERNAL_SERVER_ERROR})
+                    break;
+                }
+            }
+        } finally {
+            sendResponseData(response, responseData);
         }
-        response.status(unauthorizedResponse.statusCode);
-        response.statusMessage = unauthorizedResponse.message;
-        response.send(unauthorizedResponse);
+
+
+
+
+        // const unauthorizedResponse = new ResponseData<any>({ data: null, statusCode: HttpCode.UNAUTHORIZED, message: HttpMessage.UNAUTHORIZED });
+        // const authHeader = request.headers['authorization'];
+        // if (authHeader && authHeader.startsWith('Bearer ')) {
+        //     const token = authHeader.slice(7, authHeader.length);
+
+        //     let decodedTokenData = this.accessTokenService.decode(token);
+        //     if (decodedTokenData == null) return unauthorizedResponse;
+        //     let personId = decodedTokenData.sub;
+        //     this.personService.getPerson(personId).then((person) => {
+        //         if (person == null) return unauthorizedResponse;
+        //         if (person.personStatus == UserStatus.Deleted) return unauthorizedResponse;
+        //         response.status(HttpCode.OK);
+        //         response.statusMessage = HttpMessage.OK;
+        //         response.send(new ResponseData<any>({ data: this.personService.personToPersonDto(person, PersonResponseDto.name), statusCode: HttpCode.OK, message: HttpMessage.OK }))
+        //     });
+        // }
+        // response.status(unauthorizedResponse.statusCode);
+        // response.statusMessage = unauthorizedResponse.message;
+        // response.send(unauthorizedResponse);
     }
 
 
