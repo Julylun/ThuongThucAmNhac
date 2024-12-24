@@ -49,7 +49,7 @@ export class GmailService {
         }
     }
 
-    async sendMail(targetAddress: string, fromAddress: string, mailType: number) {
+    async sendMail(targetAddress: string, fromAddress: string, mailType: number, secureCode: number) {
         try {
             let mailDataObject = this.getMailDataJson();
             switch (mailType) {
@@ -72,7 +72,7 @@ export class GmailService {
             let htmlElement = JulyDom.toHtmlElement(htmlText);
 
             if (mailType == GmailService.MAIL_TYPE_REGISTER) {
-                let secureCode = _Number.generateRandomNumberByDigits(4)
+                // let secureCode = _Number.generateRandomNumberByDigits(4)
                 htmlElement.getElementById('secure-code').innerHTML = secureCode + ''
                 text += secureCode;
                 htmlText = htmlElement.documentElement.outerHTML;

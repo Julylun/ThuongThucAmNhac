@@ -13,6 +13,15 @@ CREATE TABLE Person (
   personStatus INT NOT NULL
 );
 
+
+CREATE TABLE OtpCode (
+  otpCodeId INT AUTO_INCREMENT PRIMARY KEY,
+  personId INT NOT NULL,
+  otpCodeToken TEXT NOT NULL,
+
+  FOREIGN KEY (personId) REFERENCES Person(personId) ON DELETE CASCADE
+);
+
 CREATE TABLE AccessToken (
   tokenId INT AUTO_INCREMENT PRIMARY KEY,
   personId INT NOT NULL,

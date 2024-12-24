@@ -9,6 +9,8 @@ import { AccesstokenModule } from '../auth/accesstoken/accesstoken.module';
 import { AccesstokenService } from '../auth/accesstoken/accesstoken.service';
 import { HashModule } from '../auth/hash/hash.module';
 import { HashService } from '../auth/hash/hash.service';
+import { OtpCode } from '../auth/otp-code/entity/otp-code.entity';
+import { OtpCodeModule } from '../auth/otp-code/otp-code.module';
 
 @Module({
   imports: [
@@ -16,6 +18,7 @@ import { HashService } from '../auth/hash/hash.service';
     forwardRef(() => RefreshtokenModule),
     forwardRef(() => AccesstokenModule),
     forwardRef(() => PlaylistModule),
+    forwardRef(() => OtpCodeModule),
     HashModule
   ],
   controllers: [PersonController],

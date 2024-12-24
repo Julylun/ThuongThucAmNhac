@@ -1,9 +1,10 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, TableInheritance, Unique } from 'typeorm'
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, TableInheritance, Unique } from 'typeorm'
 import { UserStatus, UserType } from './person.enum';
 import { AccessToken } from '../auth/accesstoken/accesstoken.entity';
 import { Playlist } from '../playlist/playlist.entity';
 import { RefreshToken } from '../auth/refreshtoken/entity/refreshtoken.entity';
 import { Song } from '../song/entity/song.entity';
+import { OtpCode } from '../auth/otp-code/entity/otp-code.entity';
 
 
 export interface PersonParams {
@@ -33,7 +34,7 @@ export class Person {
     @Column({
         type: 'int',
         enum: UserStatus,
-        default: UserStatus.Alived
+        default: UserStatus.Waiting
     })
     personStatus: number
 
@@ -57,7 +58,8 @@ export class Person {
     @OneToMany(() => Song, (song) => song.songArtist)   
     createdSongs: Song[]
 
-
+    @OneToMany(() => OtpCode, (otpCode) => otpCode.person)
+    otpCode: OtpCode[]
 }
 
 // export default Person;

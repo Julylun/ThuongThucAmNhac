@@ -6,7 +6,6 @@ import * as cookieParser from 'cookie-parser'
 import * as YAML from 'yamljs'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { VersioningType } from '@nestjs/common';
-import * as fetchPlugin from './api_docs/swagger-plugins/fetch-plugin'
 
 async function bootstrap() {
 

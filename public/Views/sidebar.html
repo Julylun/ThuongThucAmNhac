@@ -1,256 +1,232 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../Css/index-tailwind.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Css/index-tailwind.css">
+</head>
 
-    <body class="font-Nunito overflow-x-hidden">
-        <!-- container -->
-        <!-- sidebar -->
-        <!-- Responsive: normal width 16 || xl -> width 40 || 2xl: width 1/6 -->
-        <aside id="side-bar"
-            class="font-Nunito w-16 xl:w-40 2xl:w-1/6 h-screen overflow-y-hidden flex flex-col bg-side_bar_background ">
-            <!-- Logo -->
-            <div class="w-full content-center pt-5 pb-10 flex justify-center">
-                <p class="text-[#FFFF]">
-                    <span class="font-Nunito font-bold text-stroke-2 text-5xl">
-                        <span class="text-[#008DC6]">L</span><span
-                            class="hidden 2xl:inline text-[#3acf67]">ee</span><span
-                            class="text-[#C0C535]">l</span><span
-                            class="hidden 2xl:inline text-[#faa835]">u</span><span
-                            class="hidden 2xl:inline text-[#ee3a3a]">n</span></span>
-                    <span
-                        class="hidden xl:inline 2xl:inline text-2xl">life</span>
-                </p>
-            </div>
+<body class="font-Nunito overflow-x-hidden">
+    <!-- container -->
+    <!-- sidebar -->
+    <!-- Responsive: normal width 16 || xl -> width 40 || 2xl: width 1/6 -->
+    <aside id="side-bar"
+        class="font-Nunito w-16 xl:w-40 2xl:w-1/6 h-screen overflow-y-hidden flex flex-col bg-side_bar_background ">
+        <!-- Logo -->
+        <div class="w-full content-center pt-5 pb-10 flex justify-center">
+            <p class="text-[#FFFF]">
+                <span class="font-Nunito font-bold text-stroke-2 text-5xl">
+                    <span class="text-[#008DC6]">L</span><span class="hidden 2xl:inline text-[#3acf67]">ee</span><span
+                        class="text-[#C0C535]">l</span><span class="hidden 2xl:inline text-[#faa835]">u</span><span
+                        class="hidden 2xl:inline text-[#ee3a3a]">n</span></span>
+                <span class="hidden xl:inline 2xl:inline text-2xl">life</span>
+            </p>
+        </div>
 
-            <!-- lib -->
-            <a class="mt-">
-                <div data-page-indentify="library"
-                    class="group js-sidebar__button flex items-center w-full h-14 bg-[#231B2E] hover:bg-[#D9D9D91A]">
-                    <div
-                        class="js-sidebar__height-line h-full w-1 bg-[#231B2E] group-active:bg-[#9B4DE0]"></div>
-                    <svg class="js-sidebar__icon-button ml-3 size-8 2xl:ml-9"
-                        viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M12 17C12 17.8284 11.3284 18.5 10.5 18.5C9.67157 18.5 9 17.8284 9 17C9 16.1716 9.67157 15.5 10.5 15.5C11.3284 15.5 12 16.1716 12 17ZM12 17V10.5C12 12.1569 13.8954 13.5 15 13.5"
-                            stroke="#000" stroke-width="1.5"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                        <path
-                            d="M19.5617 7C19.7904 5.69523 18.7863 4.5 17.4617 4.5H6.53788C5.21323 4.5 4.20922 5.69523 4.43784 7"
-                            stroke="#FFF" stroke-width="1.5" />
-                        <path
-                            d="M17.4999 4.5C17.5283 4.24092 17.5425 4.11135 17.5427 4.00435C17.545 2.98072 16.7739 2.12064 15.7561 2.01142C15.6497 2 15.5194 2 15.2588 2H8.74099C8.48035 2 8.35002 2 8.24362 2.01142C7.22584 2.12064 6.45481 2.98072 6.45704 4.00434C6.45727 4.11135 6.47146 4.2409 6.49983 4.5"
-                            stroke="#FFF" stroke-width="1.5" />
-                        <path
-                            d="M21.1935 16.793C20.8437 19.2739 20.6689 20.5143 19.7717 21.2572C18.8745 22 17.5512 22 14.9046 22H9.09536C6.44881 22 5.12553 22 4.22834 21.2572C3.33115 20.5143 3.15626 19.2739 2.80648 16.793L2.38351 13.793C1.93748 10.6294 1.71447 9.04765 2.66232 8.02383C3.61017 7 5.29758 7 8.67239 7H15.3276C18.7024 7 20.3898 7 21.3377 8.02383C22.0865 8.83268 22.1045 9.98979 21.8592 12"
-                            stroke="#FFF" stroke-width="1.5"
-                            stroke-linecap="round" />
-                    </svg>
-                    <!-- <imag class="filter invert ml-5 size-8" src="../Assets//image/sidebar/library-svgrepo-com.svg" alt=""> -->
-                    <p
-                        class="hidden xl:inline xl:ml-2 xl:text-base 2xl:inline text-[#C6C5C7] ml-5 font-bold text-xl">
-                        Library</p>
-                </div>
-            </a>
-
-            <!-- expl -->
-            <a >
-                <div data-page-indentify="explore"
-                    class="group js-sidebar__button flex items-center w-full h-14 bg-[#231B2E] hover:bg-[#D9D9D91A]">
-                    <div
-                        class="js-sidebar__height-line h-full w-1 bg-[#231B2E] group-active:bg-[#9B4DE0]"></div>
-                    <svg class="js-sidebar__icon-button ml-3 size-8 2xl:ml-9"
-                        viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M12,22 C6.4771525,22 2,17.5228475 2,12 C2,6.4771525 6.4771525,2 12,2 C17.5228475,2 22,6.4771525 22,12 C22,17.5228475 17.5228475,22 12,22 Z M12,21 C16.9705627,21 21,16.9705627 21,12 C21,7.02943725 16.9705627,3 12,3 C7.02943725,3 3,7.02943725 3,12 C3,16.9705627 7.02943725,21 12,21 Z M12,15 C10.3431458,15 9,13.6568542 9,12 C9,10.3431458 10.3431458,9 12,9 C13.6568542,9 15,10.3431458 15,12 C15,13.6568542 13.6568542,15 12,15 Z M12,14 C13.1045695,14 14,13.1045695 14,12 C14,10.8954305 13.1045695,10 12,10 C10.8954305,10 10,10.8954305 10,12 C10,13.1045695 10.8954305,14 12,14 Z" />
-                    </svg>
-                    <!-- <imag class="filter invert ml-5 size-8" src="../Assets//image/sidebar/library-svgrepo-com.svg" alt=""> -->
-                    <p
-                        class="hidden xl:inline xl:ml-2 xl:text-base 2xl:inline text-[#C6C5C7] ml-5 font-bold text-xl">
-                        Explorer</p>
-                </div>
-            </a>
-
-            <!-- Leelun chart -->
-            <a >
-                <div data-page-indentify="leelunchart"
-                    class="group js-sidebar__button flex items-center w-full h-14 bg-[#231B2E] hover:bg-[#D9D9D91A]">
-                    <div
-                        class="js-sidebar__height-line h-full w-1 bg-[#231B2E] group-active:bg-[#9B4DE0]"></div>
-                    <svg class="js-sidebar__icon-button ml-3 size-8 2xl:ml-9"
-                        viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M21 21H7.8C6.11984 21 5.27976 21 4.63803 20.673C4.07354 20.3854 3.6146 19.9265 3.32698 19.362C3 18.7202 3 17.8802 3 16.2V3M6 15L10 11L14 15L20 9M20 9V13M20 9H16"
-                            stroke="#000000" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    <!-- <imag class="filter invert ml-5 size-8" src="../Assets//image/sidebar/library-svgrepo-com.svg" alt=""> -->
-                    <p
-                        class="hidden xl:inline xl:ml-2 xl:text-base 2xl:inline text-[#C6C5C7] ml-5 font-bold text-xl">
-                        #Leelunchart</p>
-                </div>
-            </a>
-
-            <!-- split line -->
-            <div class="flex justify-center w-full h-0.1 mt-5 mb-5">
-                <div class="h-0.3 w-3/4 bg-[#2E2739]"></div>
-            </div>
-
-            <!-- new music chart -->
-            <a >
-                <div data-page-indentify="new_music_chart"
-                    class="group js-sidebar__button flex items-center w-full h-14 bg-[#231B2E] hover:bg-[#D9D9D91A]">
-                    <div
-                        class="js-sidebar__height-line h-full w-1 bg-[#231B2E] group-active:bg-[#9B4DE0]"></div>
-                    <svg class="js-sidebar__icon-button ml-3 size-8 2xl:ml-9"
-                        viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M12 19.5C12 20.8807 10.8807 22 9.5 22C8.11929 22 7 20.8807 7 19.5C7 18.1193 8.11929 17 9.5 17C10.8807 17 12 18.1193 12 19.5Z"
-                            stroke="#1C274C" stroke-width="1.5" />
-                        <path
-                            d="M22 17.5C22 18.8807 20.8807 20 19.5 20C18.1193 20 17 18.8807 17 17.5C17 16.1193 18.1193 15 19.5 15C20.8807 15 22 16.1193 22 17.5Z"
-                            stroke="#1C274C" stroke-width="1.5" />
-                        <path d="M22 8L12 12" stroke="#1C274C"
-                            stroke-width="1.5" stroke-linecap="round" />
-                        <path
-                            d="M14.4556 5.15803L14.7452 5.84987L14.4556 5.15803ZM16.4556 4.32094L16.1661 3.62909L16.4556 4.32094ZM21.1081 3.34059L20.6925 3.96496L20.6925 3.96496L21.1081 3.34059ZM21.25 12.0004C21.25 12.4146 21.5858 12.7504 22 12.7504C22.4142 12.7504 22.75 12.4146 22.75 12.0004H21.25ZM12.75 19.0004V8.84787H11.25V19.0004H12.75ZM14.7452 5.84987L16.7452 5.01278L16.1661 3.62909L14.1661 4.46618L14.7452 5.84987ZM22.75 8.01078C22.75 6.67666 22.752 5.59091 22.6304 4.76937C22.5067 3.93328 22.2308 3.18689 21.5236 2.71622L20.6925 3.96496C20.8772 4.08787 21.0473 4.31771 21.1466 4.98889C21.248 5.67462 21.25 6.62717 21.25 8.01078H22.75ZM16.7452 5.01278C18.0215 4.47858 18.901 4.11263 19.5727 3.94145C20.2302 3.77391 20.5079 3.84204 20.6925 3.96496L21.5236 2.71622C20.8164 2.24554 20.0213 2.2792 19.2023 2.48791C18.3975 2.69298 17.3967 3.114 16.1661 3.62909L16.7452 5.01278ZM12.75 8.84787C12.75 8.18634 12.751 7.74991 12.7875 7.41416C12.822 7.09662 12.8823 6.94006 12.9594 6.8243L11.7106 5.99325C11.4527 6.38089 11.3455 6.79864 11.2963 7.25218C11.249 7.68752 11.25 8.21893 11.25 8.84787H12.75ZM14.1661 4.46618C13.5859 4.70901 13.0953 4.91324 12.712 5.12494C12.3126 5.34549 11.9686 5.60562 11.7106 5.99325L12.9594 6.8243C13.0364 6.70855 13.1575 6.59242 13.4371 6.438C13.7328 6.27473 14.135 6.10528 14.7452 5.84987L14.1661 4.46618ZM22.75 12.0004V8.01078H21.25V12.0004H22.75Z"
-                            fill="#1C274C" />
-                        <path d="M7 11V6.5V2" stroke="#1C274C"
-                            stroke-width="1.5" stroke-linecap="round" />
-                        <circle cx="4.5" cy="10.5" r="2.5" stroke="#1C274C"
-                            stroke-width="1.5" />
-                        <path d="M10 5C8.75736 5 7 4.07107 7 2" stroke="#1C274C"
-                            stroke-width="1.5"
-                            stroke-linecap="round" />
-                    </svg>
-                    <!-- <imag class="filter invert ml-5 size-8" src="../Assets//image/sidebar/library-svgrepo-com.svg" alt=""> -->
-                    <p
-                        class="hidden xl:inline xl:ml-2 xl:text-base 2xl:inline text-[#C6C5C7] ml-5 font-bold text-xl">
-                        New music chart</p>
-                </div>
-            </a>
-
-            <!-- topic&genre -->
-            <a >
-                <div data-page-indentify="topic_genre"
-                    class="group js-sidebar__button flex items-center w-full h-14 bg-[#231B2E] hover:bg-[#D9D9D91A]">
-                    <div
-                        class="js-sidebar__height-line h-full w-1 bg-[#231B2E] group-active:bg-[#9B4DE0]"></div>
-                    <svg class="js-sidebar__icon-button ml-3 size-8 2xl:ml-9"
-                        viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M17 10H19C21 10 22 9 22 7V5C22 3 21 2 19 2H17C15 2 14 3 14 5V7C14 9 15 10 17 10Z"
-                            stroke="#292D32" stroke-width="1.5"
-                            stroke-miterlimit="10" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path
-                            d="M5 22H7C9 22 10 21 10 19V17C10 15 9 14 7 14H5C3 14 2 15 2 17V19C2 21 3 22 5 22Z"
-                            stroke="#292D32" stroke-width="1.5"
-                            stroke-miterlimit="10" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path
-                            d="M6 10C8.20914 10 10 8.20914 10 6C10 3.79086 8.20914 2 6 2C3.79086 2 2 3.79086 2 6C2 8.20914 3.79086 10 6 10Z"
-                            stroke="#292D32" stroke-width="1.5"
-                            stroke-miterlimit="10" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path
-                            d="M18 22C20.2091 22 22 20.2091 22 18C22 15.7909 20.2091 14 18 14C15.7909 14 14 15.7909 14 18C14 20.2091 15.7909 22 18 22Z"
-                            stroke="#292D32" stroke-width="1.5"
-                            stroke-miterlimit="10" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                    <!-- <imag class="filter invert ml-5 size-8" src="../Assets//image/sidebar/library-svgrepo-com.svg" alt=""> -->
-                    <p
-                        class="hidden xl:inline xl:ml-2 xl:text-base 2xl:inline text-[#C6C5C7] ml-5 font-bold text-xl">
-                        Topic & Genre</p>
-                </div>
-            </a>
-
-            <a >
-                <div data-page-indentify="top100"
-                    class="group js-sidebar__button flex items-center w-full h-14 bg-[#231B2E] hover:bg-[#D9D9D91A]">
-                    <div
-                        class="js-sidebar__height-line h-full w-1 bg-[#231B2E] group-active:bg-[#9B4DE0]"></div>
-                    <svg class="js-sidebar__icon-button ml-3 size-8 2xl:ml-9"
-                        viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M11.2691 4.41115C11.5006 3.89177 11.6164 3.63208 11.7776 3.55211C11.9176 3.48263 12.082 3.48263 12.222 3.55211C12.3832 3.63208 12.499 3.89177 12.7305 4.41115L14.5745 8.54808C14.643 8.70162 14.6772 8.77839 14.7302 8.83718C14.777 8.8892 14.8343 8.93081 14.8982 8.95929C14.9705 8.99149 15.0541 9.00031 15.2213 9.01795L19.7256 9.49336C20.2911 9.55304 20.5738 9.58288 20.6997 9.71147C20.809 9.82316 20.8598 9.97956 20.837 10.1342C20.8108 10.3122 20.5996 10.5025 20.1772 10.8832L16.8125 13.9154C16.6877 14.0279 16.6252 14.0842 16.5857 14.1527C16.5507 14.2134 16.5288 14.2807 16.5215 14.3503C16.5132 14.429 16.5306 14.5112 16.5655 14.6757L17.5053 19.1064C17.6233 19.6627 17.6823 19.9408 17.5989 20.1002C17.5264 20.2388 17.3934 20.3354 17.2393 20.3615C17.0619 20.3915 16.8156 20.2495 16.323 19.9654L12.3995 17.7024C12.2539 17.6184 12.1811 17.5765 12.1037 17.56C12.0352 17.5455 11.9644 17.5455 11.8959 17.56C11.8185 17.5765 11.7457 17.6184 11.6001 17.7024L7.67662 19.9654C7.18404 20.2495 6.93775 20.3915 6.76034 20.3615C6.60623 20.3354 6.47319 20.2388 6.40075 20.1002C6.31736 19.9408 6.37635 19.6627 6.49434 19.1064L7.4341 14.6757C7.46898 14.5112 7.48642 14.429 7.47814 14.3503C7.47081 14.2807 7.44894 14.2134 7.41394 14.1527C7.37439 14.0842 7.31195 14.0279 7.18708 13.9154L3.82246 10.8832C3.40005 10.5025 3.18884 10.3122 3.16258 10.1342C3.13978 9.97956 3.19059 9.82316 3.29993 9.71147C3.42581 9.58288 3.70856 9.55304 4.27406 9.49336L8.77835 9.01795C8.94553 9.00031 9.02911 8.99149 9.10139 8.95929C9.16534 8.93081 9.2226 8.8892 9.26946 8.83718C9.32241 8.77839 9.35663 8.70162 9.42508 8.54808L11.2691 4.41115Z"
-                            stroke="#000000" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    <!-- <imag class="filter invert ml-5 size-8" src="../Assets//image/sidebar/library-svgrepo-com.svg" alt=""> -->
-                    <p
-                        class="hidden xl:inline xl:ml-2 xl:text-base 2xl:inline text-[#C6C5C7] ml-5 font-bold text-xl">
-                        Top 100</p>
-                </div>
-            </a>
-
-            <div class="hidden xl:flex xl:justify-center xl:mt-10">
+        <!-- lib -->
+        <a class="mt-">
+            <div data-page-indentify="library"
+                class="group js-sidebar__button flex items-center w-full h-14 bg-[#231B2E] hover:bg-[#D9D9D91A] hover:cursor-pointer">
                 <div
-                    class="xl:flex xl:bg-[#9B4DE9] xl:w-11/12 xl:h-30 xl:justify-center xl:items-center xl:flex-col xl:rounded-lg 2xl:w-10/12 2xl:h-40 2xl:rounded-xl ">
-                    <p
-                        class="hidden xl:inline xl:text-[#FFF] xl:text-sm xl:text-center xl:font-bold 2xl:text-lg 2xl:w-8/12">Sign
-                        in to
-                        discover playlists just for you</p>
-                    <a href="/Views/Pages/login.html">
-                        <button
-                            class="group hover:bg-[#FFF] mt-3 border-[#FFF] border-1.5 rounded-3xl ">
-                            <p
-                                class="group-hover:text-[#9B4DE0] text-[#FFF] xl:text-center xl:align-middle xl:font-bold xl:text-sm xl:mx-8 xl:my-1 2xl:text-lg 2xl:my-1 2xl:mx-12">
-                                LOGIN</p>
-                        </button>
-                    </a>
+                    class="js-sidebar__height-line h-full w-1 bg-[#231B2E] group-hover:bg-control-button--hover group-active:bg-[#9B4DE0]">
                 </div>
+                <svg class="js-sidebar__icon-button ml-3 size-8 2xl:ml-9" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M12 17C12 17.8284 11.3284 18.5 10.5 18.5C9.67157 18.5 9 17.8284 9 17C9 16.1716 9.67157 15.5 10.5 15.5C11.3284 15.5 12 16.1716 12 17ZM12 17V10.5C12 12.1569 13.8954 13.5 15 13.5"
+                        stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path
+                        d="M19.5617 7C19.7904 5.69523 18.7863 4.5 17.4617 4.5H6.53788C5.21323 4.5 4.20922 5.69523 4.43784 7"
+                        stroke="#FFF" stroke-width="1.5" />
+                    <path
+                        d="M17.4999 4.5C17.5283 4.24092 17.5425 4.11135 17.5427 4.00435C17.545 2.98072 16.7739 2.12064 15.7561 2.01142C15.6497 2 15.5194 2 15.2588 2H8.74099C8.48035 2 8.35002 2 8.24362 2.01142C7.22584 2.12064 6.45481 2.98072 6.45704 4.00434C6.45727 4.11135 6.47146 4.2409 6.49983 4.5"
+                        stroke="#FFF" stroke-width="1.5" />
+                    <path
+                        d="M21.1935 16.793C20.8437 19.2739 20.6689 20.5143 19.7717 21.2572C18.8745 22 17.5512 22 14.9046 22H9.09536C6.44881 22 5.12553 22 4.22834 21.2572C3.33115 20.5143 3.15626 19.2739 2.80648 16.793L2.38351 13.793C1.93748 10.6294 1.71447 9.04765 2.66232 8.02383C3.61017 7 5.29758 7 8.67239 7H15.3276C18.7024 7 20.3898 7 21.3377 8.02383C22.0865 8.83268 22.1045 9.98979 21.8592 12"
+                        stroke="#FFF" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+                <!-- <imag class="filter invert ml-5 size-8" src="../Assets//image/sidebar/library-svgrepo-com.svg" alt=""> -->
+                <p class="hidden xl:inline xl:ml-2 xl:text-base 2xl:inline text-[#C6C5C7] ml-5 font-bold text-xl">
+                    Library</p>
             </div>
+        </a>
 
-            <a  id="createPlaylist" class="mt-auto">
+        <!-- expl -->
+        <a>
+            <div data-page-indentify="explore"
+                class="group js-sidebar__button flex items-center w-full h-14 bg-[#231B2E] hover:bg-[#D9D9D91A] hover:cursor-pointer">
                 <div
-                    class="group js-sidebar__button flex items-center w-full h-14 bg-[#231B2E] hover:bg-[#D9D9D91A]">
-                    <div
-                        class="js-sidebar__height-line h-full w-1 bg-[#231B2E] group-active:bg-[#9B4DE0]"></div>
-                    <div class="w-full flex justify-center">
-                        <svg class="js-sidebar__icon-button size-8"
-                            viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6 12H18M12 6V18" stroke="#000000"
-                                stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                        <!-- <imag class="filter invert ml-5 size-8" src="../Assets//image/sidebar/library-svgrepo-com.svg" alt=""> -->
+                    class="js-sidebar__height-line h-full w-1 bg-[#231B2E] group-hover:bg-control-button--hover group-active:bg-[#9B4DE0]">
+                </div>
+                <svg class="js-sidebar__icon-button ml-3 size-8 2xl:ml-9" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M12,22 C6.4771525,22 2,17.5228475 2,12 C2,6.4771525 6.4771525,2 12,2 C17.5228475,2 22,6.4771525 22,12 C22,17.5228475 17.5228475,22 12,22 Z M12,21 C16.9705627,21 21,16.9705627 21,12 C21,7.02943725 16.9705627,3 12,3 C7.02943725,3 3,7.02943725 3,12 C3,16.9705627 7.02943725,21 12,21 Z M12,15 C10.3431458,15 9,13.6568542 9,12 C9,10.3431458 10.3431458,9 12,9 C13.6568542,9 15,10.3431458 15,12 C15,13.6568542 13.6568542,15 12,15 Z M12,14 C13.1045695,14 14,13.1045695 14,12 C14,10.8954305 13.1045695,10 12,10 C10.8954305,10 10,10.8954305 10,12 C10,13.1045695 10.8954305,14 12,14 Z" />
+                </svg>
+                <!-- <imag class="filter invert ml-5 size-8" src="../Assets//image/sidebar/library-svgrepo-com.svg" alt=""> -->
+                <p class="hidden xl:inline xl:ml-2 xl:text-base 2xl:inline text-[#C6C5C7] ml-5 font-bold text-xl">
+                    Explorer</p>
+            </div>
+        </a>
+
+        <!-- Leelun chart -->
+        <a>
+            <div data-page-indentify="leelunchart"
+                class="group js-sidebar__button flex items-center w-full h-14 bg-[#231B2E] hover:bg-[#D9D9D91A] hover:cursor-pointer">
+                <div
+                    class="js-sidebar__height-line h-full w-1 bg-[#231B2E] group-hover:bg-control-button--hover group-active:bg-[#9B4DE0]">
+                </div>
+                <svg class="js-sidebar__icon-button ml-3 size-8 2xl:ml-9" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M21 21H7.8C6.11984 21 5.27976 21 4.63803 20.673C4.07354 20.3854 3.6146 19.9265 3.32698 19.362C3 18.7202 3 17.8802 3 16.2V3M6 15L10 11L14 15L20 9M20 9V13M20 9H16"
+                        stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <!-- <imag class="filter invert ml-5 size-8" src="../Assets//image/sidebar/library-svgrepo-com.svg" alt=""> -->
+                <p class="hidden xl:inline xl:ml-2 xl:text-base 2xl:inline text-[#C6C5C7] ml-5 font-bold text-xl">
+                    #Leelunchart</p>
+            </div>
+        </a>
+
+        <!-- split line -->
+        <div class="flex justify-center w-full h-0.1 mt-5 mb-5">
+            <div class="h-0.3 w-3/4 bg-[#2E2739]"></div>
+        </div>
+
+        <!-- new music chart -->
+        <a>
+            <div data-page-indentify="new_music_chart"
+                class="group js-sidebar__button flex items-center w-full h-14 bg-[#231B2E] hover:bg-[#D9D9D91A] hover:cursor-pointer">
+                <div class="js-sidebar__height-line h-full w-1 bg-[#231B2E] group-hover:bg-control-button--hover group-active:bg-[#9B4DE0]"></div>
+
+                <svg class="js-sidebar__icon-button ml-3 size-8 2xl:ml-9" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M12 19.5C12 20.8807 10.8807 22 9.5 22C8.11929 22 7 20.8807 7 19.5C7 18.1193 8.11929 17 9.5 17C10.8807 17 12 18.1193 12 19.5Z"
+                        stroke="#1C274C" stroke-width="1.5" />
+                    <path
+                        d="M22 17.5C22 18.8807 20.8807 20 19.5 20C18.1193 20 17 18.8807 17 17.5C17 16.1193 18.1193 15 19.5 15C20.8807 15 22 16.1193 22 17.5Z"
+                        stroke="#1C274C" stroke-width="1.5" />
+                    <path d="M22 8L12 12" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                    <path
+                        d="M14.4556 5.15803L14.7452 5.84987L14.4556 5.15803ZM16.4556 4.32094L16.1661 3.62909L16.4556 4.32094ZM21.1081 3.34059L20.6925 3.96496L20.6925 3.96496L21.1081 3.34059ZM21.25 12.0004C21.25 12.4146 21.5858 12.7504 22 12.7504C22.4142 12.7504 22.75 12.4146 22.75 12.0004H21.25ZM12.75 19.0004V8.84787H11.25V19.0004H12.75ZM14.7452 5.84987L16.7452 5.01278L16.1661 3.62909L14.1661 4.46618L14.7452 5.84987ZM22.75 8.01078C22.75 6.67666 22.752 5.59091 22.6304 4.76937C22.5067 3.93328 22.2308 3.18689 21.5236 2.71622L20.6925 3.96496C20.8772 4.08787 21.0473 4.31771 21.1466 4.98889C21.248 5.67462 21.25 6.62717 21.25 8.01078H22.75ZM16.7452 5.01278C18.0215 4.47858 18.901 4.11263 19.5727 3.94145C20.2302 3.77391 20.5079 3.84204 20.6925 3.96496L21.5236 2.71622C20.8164 2.24554 20.0213 2.2792 19.2023 2.48791C18.3975 2.69298 17.3967 3.114 16.1661 3.62909L16.7452 5.01278ZM12.75 8.84787C12.75 8.18634 12.751 7.74991 12.7875 7.41416C12.822 7.09662 12.8823 6.94006 12.9594 6.8243L11.7106 5.99325C11.4527 6.38089 11.3455 6.79864 11.2963 7.25218C11.249 7.68752 11.25 8.21893 11.25 8.84787H12.75ZM14.1661 4.46618C13.5859 4.70901 13.0953 4.91324 12.712 5.12494C12.3126 5.34549 11.9686 5.60562 11.7106 5.99325L12.9594 6.8243C13.0364 6.70855 13.1575 6.59242 13.4371 6.438C13.7328 6.27473 14.135 6.10528 14.7452 5.84987L14.1661 4.46618ZM22.75 12.0004V8.01078H21.25V12.0004H22.75Z"
+                        fill="#1C274C" />
+                    <path d="M7 11V6.5V2" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                    <circle cx="4.5" cy="10.5" r="2.5" stroke="#1C274C" stroke-width="1.5" />
+                    <path d="M10 5C8.75736 5 7 4.07107 7 2" stroke="#1C274C" stroke-width="1.5"
+                        stroke-linecap="round" />
+                </svg>
+                <!-- <imag class="filter invert ml-5 size-8" src="../Assets//image/sidebar/library-svgrepo-com.svg" alt=""> -->
+                <p class="hidden xl:inline xl:ml-2 xl:text-base 2xl:inline text-[#C6C5C7] ml-5 font-bold text-xl">
+                    New music chart</p>
+            </div>
+        </a>
+
+        <!-- topic&genre -->
+        <a>
+            <div data-page-indentify="topic_genre"
+                class="group js-sidebar__button flex items-center w-full h-14 bg-[#231B2E] hover:bg-[#D9D9D91A] hover:cursor-pointer">
+                <div class="js-sidebar__height-line h-full w-1 bg-[#231B2E] group-hover:bg-control-button--hover group-active:bg-[#9B4DE0]"></div>
+                <svg class="js-sidebar__icon-button ml-3 size-8 2xl:ml-9" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17 10H19C21 10 22 9 22 7V5C22 3 21 2 19 2H17C15 2 14 3 14 5V7C14 9 15 10 17 10Z"
+                        stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M5 22H7C9 22 10 21 10 19V17C10 15 9 14 7 14H5C3 14 2 15 2 17V19C2 21 3 22 5 22Z"
+                        stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path
+                        d="M6 10C8.20914 10 10 8.20914 10 6C10 3.79086 8.20914 2 6 2C3.79086 2 2 3.79086 2 6C2 8.20914 3.79086 10 6 10Z"
+                        stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path
+                        d="M18 22C20.2091 22 22 20.2091 22 18C22 15.7909 20.2091 14 18 14C15.7909 14 14 15.7909 14 18C14 20.2091 15.7909 22 18 22Z"
+                        stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                <!-- <imag class="filter invert ml-5 size-8" src="../Assets//image/sidebar/library-svgrepo-com.svg" alt=""> -->
+                <p class="hidden xl:inline xl:ml-2 xl:text-base 2xl:inline text-[#C6C5C7] ml-5 font-bold text-xl">
+                    Topic & Genre</p>
+            </div>
+        </a>
+
+        <a>
+            <div data-page-indentify="top100"
+                class="group js-sidebar__button flex items-center w-full h-14 bg-[#231B2E] hover:bg-[#D9D9D91A] hover:cursor-pointer">
+                <div class="js-sidebar__height-line h-full w-1 bg-[#231B2E] group-hover:bg-control-button--hover group-active:bg-[#9B4DE0]"></div>
+                <svg class="js-sidebar__icon-button ml-3 size-8 2xl:ml-9" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M11.2691 4.41115C11.5006 3.89177 11.6164 3.63208 11.7776 3.55211C11.9176 3.48263 12.082 3.48263 12.222 3.55211C12.3832 3.63208 12.499 3.89177 12.7305 4.41115L14.5745 8.54808C14.643 8.70162 14.6772 8.77839 14.7302 8.83718C14.777 8.8892 14.8343 8.93081 14.8982 8.95929C14.9705 8.99149 15.0541 9.00031 15.2213 9.01795L19.7256 9.49336C20.2911 9.55304 20.5738 9.58288 20.6997 9.71147C20.809 9.82316 20.8598 9.97956 20.837 10.1342C20.8108 10.3122 20.5996 10.5025 20.1772 10.8832L16.8125 13.9154C16.6877 14.0279 16.6252 14.0842 16.5857 14.1527C16.5507 14.2134 16.5288 14.2807 16.5215 14.3503C16.5132 14.429 16.5306 14.5112 16.5655 14.6757L17.5053 19.1064C17.6233 19.6627 17.6823 19.9408 17.5989 20.1002C17.5264 20.2388 17.3934 20.3354 17.2393 20.3615C17.0619 20.3915 16.8156 20.2495 16.323 19.9654L12.3995 17.7024C12.2539 17.6184 12.1811 17.5765 12.1037 17.56C12.0352 17.5455 11.9644 17.5455 11.8959 17.56C11.8185 17.5765 11.7457 17.6184 11.6001 17.7024L7.67662 19.9654C7.18404 20.2495 6.93775 20.3915 6.76034 20.3615C6.60623 20.3354 6.47319 20.2388 6.40075 20.1002C6.31736 19.9408 6.37635 19.6627 6.49434 19.1064L7.4341 14.6757C7.46898 14.5112 7.48642 14.429 7.47814 14.3503C7.47081 14.2807 7.44894 14.2134 7.41394 14.1527C7.37439 14.0842 7.31195 14.0279 7.18708 13.9154L3.82246 10.8832C3.40005 10.5025 3.18884 10.3122 3.16258 10.1342C3.13978 9.97956 3.19059 9.82316 3.29993 9.71147C3.42581 9.58288 3.70856 9.55304 4.27406 9.49336L8.77835 9.01795C8.94553 9.00031 9.02911 8.99149 9.10139 8.95929C9.16534 8.93081 9.2226 8.8892 9.26946 8.83718C9.32241 8.77839 9.35663 8.70162 9.42508 8.54808L11.2691 4.41115Z"
+                        stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <!-- <imag class="filter invert ml-5 size-8" src="../Assets//image/sidebar/library-svgrepo-com.svg" alt=""> -->
+                <p class="hidden xl:inline xl:ml-2 xl:text-base 2xl:inline text-[#C6C5C7] ml-5 font-bold text-xl">
+                    Top 100</p>
+            </div>
+        </a>
+
+        <div class="hidden xl:flex xl:justify-center xl:mt-10">
+            <div
+                class="xl:flex xl:bg-[#9B4DE9] xl:w-11/12 xl:h-30 xl:justify-center xl:items-center xl:flex-col xl:rounded-lg 2xl:w-10/12 2xl:h-40 2xl:rounded-xl ">
+                <p
+                    class="hidden xl:inline xl:text-[#FFF] xl:text-sm xl:text-center xl:font-bold 2xl:text-lg 2xl:w-8/12">
+                    Sign
+                    in to
+                    discover playlists just for you</p>
+                <a href="/Views/Pages/login.html">
+                    <button class="group hover:bg-[#FFF] mt-3 border-[#FFF] border-1.5 rounded-3xl ">
                         <p
-                            class="hidden xl:inline xl:text-base xl:ml-1 xl:mt-auto xl:mb-auto text-center align-middle text-[#C6C5C7] 2xl:ml-3 font-bold 2xl:text-xl">Create
-                            playlist</p>
-                    </div>
-                </div>
-            </a>
-
-            <div id="form_addPlaylist" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                <div class="relative wrapper items-center bg-gradient-to-b from-[#8e46cd9e] via-[#ccabe8a1] to-[#ffffffb7] p-6 rounded-lg border border-[#fff] shadow-lg">
-                    <button id="close_createPlaylist" class="absolute top-1 right-1 bg-red-500 text-white p-2 rounded-full hover:bg-red-700 focus:outline-none">
-                        <svg class="w-[30px] h-[30px]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19 5L4.99998 19M5.00001 5L19 19" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                            class="group-hover:text-[#9B4DE0] text-[#FFF] xl:text-center xl:align-middle xl:font-bold xl:text-sm xl:mx-8 xl:my-1 2xl:text-lg 2xl:my-1 2xl:mx-12">
+                            LOGIN</p>
                     </button>
-                    <div class="w-80 flex flex-col items-center">
-                        <h1 class="text-[#ffff] text-xl mb-4 text-center">Create new playlist</h1>
-                        <input class="bg-[#fff] w-[250px] h-[40px] rounded-full border border-[#fff] border-opacity-5 text-[#000] font-light px-3" type="text" placeholder="Enter name playlist">
-                        <button class="button--login w-[100px] h-[36px] text-[#fff] bg-[#A35DE1] border border-[#fff] hover:text-[#A35DE1] hover:bg-[#fff] hover:border-[#A35DE1] font-bold rounded-3xl mt-5">CREATE</button>
-                    </div>
+                </a>
+            </div>
+        </div>
+
+        <a id="createPlaylist" class="mt-auto">
+            <div class="group js-sidebar__button flex items-center w-full h-14 bg-[#231B2E] hover:cursor-pointer hover:bg-[#D9D9D91A]">
+                <div class="js-sidebar__height-line h-full w-1 bg-[#231B2E] group-hover:bg-control-button--hover group-active:bg-[#9B4DE0]"></div>
+                <div class="w-full flex justify-center">
+                    <svg class="js-sidebar__icon-button size-8" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 12H18M12 6V18" stroke="#000000" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <!-- <imag class="filter invert ml-5 size-8" src="../Assets//image/sidebar/library-svgrepo-com.svg" alt=""> -->
+                    <p
+                        class="hidden xl:inline xl:text-base xl:ml-1 xl:mt-auto xl:mb-auto text-center align-middle text-[#C6C5C7] 2xl:ml-3 font-bold 2xl:text-xl">
+                        Create
+                        playlist</p>
                 </div>
             </div>
+        </a>
 
-        </aside>
-        <script type="module" src="../Js/sidebar/sidebar.js"></script>
-    </body>
+        <div id="form_addPlaylist"
+            class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div
+                class="relative wrapper items-center bg-gradient-to-b from-[#8e46cd9e] via-[#ccabe8a1] to-[#ffffffb7] p-6 rounded-lg border border-[#fff] shadow-lg">
+                <button id="close_createPlaylist"
+                    class="absolute top-1 right-1 bg-red-500 text-white p-2 rounded-full hover:bg-red-700 focus:outline-none">
+                    <svg class="w-[30px] h-[30px]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 5L4.99998 19M5.00001 5L19 19" stroke="#fff" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <div class="w-80 flex flex-col items-center">
+                    <h1 class="text-[#ffff] text-xl mb-4 text-center">Create new playlist</h1>
+                    <input
+                        class="bg-[#fff] w-[250px] h-[40px] rounded-full border border-[#fff] border-opacity-5 text-[#000] font-light px-3"
+                        type="text" placeholder="Enter name playlist">
+                    <button
+                        class="button--login w-[100px] h-[36px] text-[#fff] bg-[#A35DE1] border border-[#fff] hover:text-[#A35DE1] hover:bg-[#fff] hover:border-[#A35DE1] font-bold rounded-3xl mt-5">CREATE</button>
+                </div>
+            </div>
+        </div>
+
+    </aside>
+    <script type="module" src="../Js/sidebar/sidebar.js"></script>
+</body>
 
 </html>
