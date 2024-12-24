@@ -19,19 +19,19 @@
         class="fixed hidden z-40 top-0 left-0 inset-0 transition-all will-change-auto transform-gpu duration-200 bg-[#00000000] ">
       </div>
         <div id="profile-box" data-w="64" data-h="80"
-          class="profile-box hidden transform-gpu will-change-auto overflow-hidden fixed flex-col z-50 -right-64 top-0 w-64 h-80 mt-3 mr-3 drop-shadow-lg transition-all duration-400 bg-[#1d132c] bg-opacity-100 backdrop-blur-sm rounded-2xl scale-0">
+          class="profile-box hidden transform-gpu will-change-auto overflow-hidden fixed flex-col z-50 -right-64 top-0 w-64 h-80 mt-3 mr-3 drop-shadow-lg transition-all duration-400 bg-[#1d132c] bg-opacity-100 backdrop-blur-sm rounded-2xl scale-0 border-[#fff] border-1">
           <div class="profile-box w-full h-fit flex flex-col items-center justify-center mt-4">
             <img id="js__profile-box__avatar" class="profile-box bg-[red] size-16 rounded-full" src="#">
             <p id="js__profile-box__name" class="profile-box w-fit mt-3 font-Nunito font-bold text-[white] text-xl">Hello Guest!</p>
           </div>
-          <div class="profile-box flex-1 flex flex-col justify-around items-center ">
+          <div class="profile-box flex-1 flex flex-col justify-around items-center">
             <a href="/login"><button
-                class="profile-box mt-14 rounded-2xl border border-[#FFF] stroke-2 bg-[pink]">
-                <p class="font-Nunito text-[white] my-1 mx-3">Login to continue</p>
+                class="profile-box mt-14 rounded-2xl border border-[#FFF] stroke-2 bg-[#A35DE1] hover:bg-[#fff] hover:border-[#A35DE1]">
+                <p class="font-Nunito text-[#fff] font-bold hover:text-[#A35DE1] my-1 mx-3">Login to continue</p>
               </button></a>
 
             <button onclick="window.location.href = window.location.origin + '/logup'">
-              <p class="profile-box text-[white] text-xs">I don't have account</p>
+              <p class="profile-box text-[white] text-sm underline hover:text-[#A35DE1] hover:underline">I don't have account</p>
             </button>
           </div>
         </div>

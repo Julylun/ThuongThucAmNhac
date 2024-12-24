@@ -4,7 +4,7 @@ export {
     renderAlbums,
     renderFavoriteSongs
 }
-
+import ResourceService from "../../Js/service/resourceService/resourceService.js";
 //FIXME:: We shouldnt set button id is song id because this can cause conflict with other id in the page. To fix this, you can use a prefix for the id like "song-<song_id>" or create a custom attribute like "data-song-id" to store the song id (You can use chat gpt to know the prefix of attribute "data-"
 function createButton({ name, imgSrc, id }) {
     const container = document.createElement("div");
@@ -196,11 +196,12 @@ const renderFavoriteSongs = (myFavoriteSongs) => {
         const songRow = document.createElement('div');
         songRow.classList.add('grid', 'grid-cols-3', 'gap-3', 'border-y-1.5', 'border-[#1D1529]', 'hover:bg-[#2F2739]', 'hover:rounded-md');
         const formattedTime = formatDuration(song.time);
+        const img = ResourceService.DefaultImagePath + song.image;
         songRow.innerHTML = `
         <div>
             <button class="ml-5 w-full h-full">
                 <div class="_music-item group font-Nunito flex flex-row items-center w-full">
-                    <img class="bg-[#AAA] aspect-square size-20 mt-4 mb-4 rounded-lg md:mt-2 md:mb-2 md:size-14 md:rounded-sm" src="${song.image}" alt="${song.song}">
+                    <img class="bg-[#AAA] aspect-square size-20 mt-4 mb-4 rounded-lg md:mt-2 md:mb-2 md:size-14 md:rounded-sm" src="${img}" alt="${song.song}">
                     <div class="ml-3 flex flex-col">
                         <p class="font-semibold text-sm text-[#FFF] group-hover:text-[#b66dde] md:text-sm lg:text-base">${song.song}</p>
                         <p class="font-semibold text-sm text-[#888888] md:text-sm hover:underline text-left">${song.artist}</p>
