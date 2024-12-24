@@ -88,7 +88,7 @@ export class SongController {
 
 
             song.listenTimes+=1;
-            this.songService.saveSong(song)
+            await this.songService.saveSong(song)
 
             const fileStream = createReadStream(FILEPATH + song.songPath);
             res.status(HttpCode.OK);
