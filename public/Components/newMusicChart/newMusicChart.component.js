@@ -1,7 +1,8 @@
 export {
     renderSong
 }
-
+// import { ResourceService } from "../../services/resourceService/resourceService.js";
+import ResourceService from "../../Js/service/resourceService/resourceService.js";
 import { addSongToCurrentPositionEvent } from "../../Features/event/button.event.js";
 
 const container = document.getElementById("js_newMusicChart");
@@ -20,14 +21,14 @@ function createSong(song) {
     const rank = document.createElement("h1");
     rank.classList.add("font-Nunito", "font-bold", "text-4xl", "pl-4");
 
-    if (song.rank < 10) {
+    if (song.songId < 10) {
         rank.classList.add('mr-5');
     }
-    if (song.rank === 1) {
+    if (song.songId === 1) {
         rank.classList.add('text-outline1');
-    } else if (song.rank === 2) {
+    } else if (song.songId === 2) {
         rank.classList.add('text-outline2');
-    } else if (song.rank === 3) {
+    } else if (song.songId === 3) {
         rank.classList.add('text-outline3');
     } else {
         rank.classList.add('text-outline4');
@@ -47,7 +48,8 @@ function createSong(song) {
 
     const img = document.createElement("img");
     img.classList.add("bg-[#AAA]", "size-10", "mt-4", "mb-4", "rounded-lg", "md:mt-2", "md:mb-2", "md:size-14", "md:rounded-sm");
-    img.src = song.songImage;
+    // img.src = ResourceService.DefaultImagePath + song.songImage;
+    img.src = ResourceService.DefaultImagePath + song.songImage;
     img.alt = song.songName;
     
     
