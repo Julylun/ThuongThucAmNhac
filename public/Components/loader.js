@@ -153,7 +153,8 @@ const reloadContent = () => {
 
 const setCurrentPage = (page) => {
     global_currentPage = page
-    console.log("[FlowDebug](loader.js - setCurrentPage): Set current page to %s", global_currentPage.id_name)
+    console.log("[FlowDebug](loader.js - setCurrentPage): Set current page to %s", global_currentPage.id_name);
+    pageLoad(page);
 }
 const onStart = () => {
     global_currentPage = PAGELOAD_EXPLORE
